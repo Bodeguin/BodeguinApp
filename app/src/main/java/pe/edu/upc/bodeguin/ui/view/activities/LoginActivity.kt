@@ -7,24 +7,20 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.activity_login.*
 import pe.edu.upc.bodeguin.R
 import pe.edu.upc.bodeguin.data.network.api.ApiGateway
 import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
-import pe.edu.upc.bodeguin.data.network.model.request.AuthRequest
 import pe.edu.upc.bodeguin.data.network.model.response.AuthResponse
 import pe.edu.upc.bodeguin.data.repository.AuthRepository
 import pe.edu.upc.bodeguin.databinding.ActivityLoginBinding
 import pe.edu.upc.bodeguin.ui.view.listeners.AuthListener
 import pe.edu.upc.bodeguin.ui.viewModel.AuthViewModel
 import pe.edu.upc.bodeguin.ui.viewModel.AuthViewModelFactory
-import pe.edu.upc.bodeguin.util.snackbar
-import pe.edu.upc.bodeguin.util.toast
+import pe.edu.upc.bodeguin.util.hide
+import pe.edu.upc.bodeguin.util.show
+import pe.edu.upc.bodeguin.util.snackBar
 
 class LoginActivity : AppCompatActivity(), AuthListener {
 
@@ -42,7 +38,6 @@ class LoginActivity : AppCompatActivity(), AuthListener {
         val authViewModel = ViewModelProvider(this,
             factory).get(AuthViewModel::class.java)
 
-        //ViewModelProvider.AndroidViewModelFactory.getInstance(this.application)
         authViewModel.authListener = this
 
         if (sharedPreferences.contains("token")) {
@@ -50,7 +45,6 @@ class LoginActivity : AppCompatActivity(), AuthListener {
             startActivity(intent)
         } else {
             val binding: ActivityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-            // delete val authViewModel
             binding.viewModel = authViewModel
         }
     }
@@ -75,18 +69,20 @@ class LoginActivity : AppCompatActivity(), AuthListener {
     }
 
     override fun onStarted() {
-        //toast("Login Started")
+        progressBar.show()
     }
 
     override fun onSuccess(loginResponse: AuthResponse) {
-            if (loginResponse.id == 0) rootLayout.snackbar(resources.getString(R.string.wrong_credentials))
-            else {
-                saveData(loginResponse.id.toString())
-                startActivity(Intent(applicationContext, MainActivity::class.java))
-            }
+        progressBar.hide()
+        if (loginResponse.id == 0) rootLayout.snackBar(resources.getString(R.string.wrong_credentials))
+        else {
+            saveData(loginResponse.id.toString())
+            startActivity(Intent(applicationContext, MainActivity::class.java))
+        }
     }
 
     override fun onFailure(message: String) {
-        rootLayout.snackbar(message)
+        progressBar.hide()
+        rootLayout.snackBar(message)
     }
 }
