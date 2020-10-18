@@ -27,4 +27,5 @@
     <string name="wrong_credentials">Correo o contraseña incorrecta</string>
     <string name="empty_credentials">Correo o contraseña debe estar completo</string>
     <string name="not_internet">Asegurece de tener una conexión de datos activa</string>
+    <string name="no_connection_services">Tenemos un error de conexión con el servicio, intentelo más tarde.</string>
 </resources>

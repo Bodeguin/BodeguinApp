@@ -8,6 +8,7 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import pe.edu.upc.bodeguin.R
 import pe.edu.upc.bodeguin.util.NoInternetException
+import java.lang.Exception
 
 class NetworkConnectionInterceptor(
     context: Context
@@ -16,9 +17,15 @@ class NetworkConnectionInterceptor(
     private val applicationContext = context.applicationContext
 
     override fun intercept(chain: Interceptor.Chain): Response {
+        var chainResponse: Response? = null
         if(!isInternetAvailable())
             throw NoInternetException(applicationContext.resources.getString(R.string.not_internet))
-        return chain.proceed(chain.request())
+        try {
+            chainResponse = chain.proceed(chain.request())
+            return chainResponse
+        } catch (e: Exception){
+            throw NoInternetException(applicationContext.resources.getString(R.string.no_connection_services))
+        }
     }
 
     private fun isInternetAvailable() : Boolean {

@@ -7,6 +7,7 @@ import pe.edu.upc.bodeguin.R
 import pe.edu.upc.bodeguin.data.network.model.request.AuthRequest
 import pe.edu.upc.bodeguin.data.repository.AuthRepository
 import pe.edu.upc.bodeguin.ui.view.listeners.AuthListener
+import pe.edu.upc.bodeguin.util.ApiException
 import pe.edu.upc.bodeguin.util.Coroutines
 import pe.edu.upc.bodeguin.util.NoInternetException
 
@@ -28,14 +29,18 @@ class AuthViewModel(
             val authenticateRequest = AuthRequest(email!!, password!!)
 
             Coroutines.main {
+
                 try {
-                    val response = repository.authenticate(authenticateRequest)
-                    if (response.isSuccessful) {
-                        authListener?.onSuccess(response.body()!!)
-                    } else {
-                        authListener?.onFailure(getApplication<Application>().resources.getString(R.string.wrong_credentials))
+                    val authResponse = repository.authenticate(authenticateRequest)
+                    authResponse?.let {
+                        authListener?.onSuccess(authResponse)
+                        //return@main
                     }
-                } catch (e: NoInternetException){
+                    authListener?.onFailure(getApplication<Application>().resources.getString(R.string.wrong_credentials))
+                } catch (e: ApiException) {
+                    authListener?.onFailure(e.message!!)
+                }
+                catch (e: NoInternetException){
                     authListener?.onFailure(e.message!!)
                 }
 

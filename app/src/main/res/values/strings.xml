@@ -26,4 +26,5 @@
     <string name="wrong_credentials">Invalid email or password</string>
     <string name="empty_credentials">Email or Password must be complete</string>
     <string name="not_internet">Make sure you have an active data connection</string>
+    <string name="no_connection_services">We have a  connection error to the services, please try later.</string>
 </resources>
