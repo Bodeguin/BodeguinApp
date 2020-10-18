@@ -3,4 +3,24 @@
     <string name="shopping_cart">Shopping Cart</string>
     <string name="home">Home</string>
     <string name="profile">Profile</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="no_account">don\'t have an account?</string>
+    <string name="registry">Enter here</string>
+    <string name="exit_text">One more time to exit</string>
+    <string name="registry_account">Registry</string>
+    <string name="logout">Logout</string>
+    <string name="subtitle_register">Your incredible experience starts here</string>
+    <string name="signUp">SIGN UP</string>
+    <string name="direction">Direction</string>
+    <string name="dni">Dni</string>
+    <string name="lastName_mother">Mother\'s last name</string>
+    <string name="lastName_father">Father\'s last name</string>
+    <string name="name">Name</string>
+    <string name="img_logo">App\'s logo</string>
+    <string name="return_notification">Come back soon</string>
+    <string name="title_notification">See you</string>
+    <string name="welcome_text">Welcome!</string>
+    <string name="body_text">Sign in to continue with your incredible experience</string>
 </resources>

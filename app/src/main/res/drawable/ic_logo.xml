@@ -1,0 +1,202 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="36dp"
+    android:height="36dp"
+    android:viewportWidth="400"
+    android:viewportHeight="400">
+    <path
+        android:fillColor="#f29a00"
+        android:name="Forma 4"
+        android:pathData="m310 144 -30 -33 -157 -1 -31 32 218 2z" />
+    <path
+        android:fillColor="#f29a00"
+        android:name="Rectángulo 1"
+        android:pathData="m104 182h197v120h-197v-120z" />
+    <path
+        android:fillColor="#da7901"
+        android:name="Forma 5"
+        android:pathData="m104 206 189 93 7 -83 -1 -24h-197l2 14z" />
+    <path
+        android:fillColor="#f44336"
+        android:name="Rectángulo redondeado 1"
+        android:pathData="m127 63h147c5.5 0 10 4.5 10 10v31c0 5.5 -4.5 10 -10 10h-147c-5.5 0 -10 -4.5 -10 -10v-31c0 -5.5 4.5 -10 10 -10z" />
+    <path
+        android:name="Rectángulo redondeado 1"
+        android:pathData="m272 75v27h-143v-27zm-145 -12c-5.5 0 -10 4.5 -10 10v31c0 5.5 4.5 10 10 10h147c5.5 0 10 -4.5 10 -10v-31c0 -5.5 -4.5 -10 -10 -10z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#f44336"
+        android:name="Rectángulo redondeado 2"
+        android:pathData="m220 226h47c5.5 0 10 4.5 10 10v35c0 5.5 -4.5 10 -10 10h-47c-5.5 0 -10 -4.5 -10 -10v-35c0 -5.5 4.5 -10 10 -10z" />
+    <path
+        android:name="Rectángulo redondeado 2"
+        android:pathData="m265 238v31h-43v-31zm-45 -12c-5.5 0 -10 4.5 -10 10v35c0 5.5 4.5 10 10 10h47c5.5 0 10 -4.5 10 -10v-35c0 -5.5 -4.5 -10 -10 -10z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#af5303"
+        android:name="Rectángulo redondeado 3"
+        android:pathData="m139 226h44c5.5 0 10 4.5 10 10v63c0 5.5 -4.5 10 -10 10h-44c-5.5 0 -10 -4.5 -10 -10v-63c0 -5.5 4.5 -10 10 -10z" />
+    <path
+        android:name="Rectángulo redondeado 3"
+        android:pathData="m181 238v59h-40v-59zm-42 -12c-5.5 0 -10 4.5 -10 10v63c0 5.5 4.5 10 10 10h44c5.5 0 10 -4.5 10 -10v-63c0 -5.5 -4.5 -10 -10 -10z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#af5303"
+        android:name="Rectángulo redondeado 4"
+        android:pathData="m80.5 296h240c3.6 0 6.5 2.9 6.5 6.5c0 3.6 -2.9 6.5 -6.5 6.5h-240c-3.6 0 -6.5 -2.9 -6.5 -6.5c0 -3.6 2.9 -6.5 6.5 -6.5z" />
+    <path
+        android:name="Rectángulo redondeado 4"
+        android:pathData="m80.5 296c-3.6 0 -6.5 2.9 -6.5 6.5c0 3.6 2.9 6.5 6.5 6.5h240c3.6 0 6.5 -2.9 6.5 -6.5c0 -3.6 -2.9 -6.5 -6.5 -6.5z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#af5303"
+        android:name="Rectángulo redondeado 5"
+        android:pathData="m296.5 214c3.6 0 6.5 2.9 6.5 6.5v76c0 3.6 -2.9 6.5 -6.5 6.5c-3.6 0 -6.5 -2.9 -6.5 -6.5v-76c0 -3.6 2.9 -6.5 6.5 -6.5z" />
+    <path
+        android:name="Rectángulo redondeado 5"
+        android:pathData="m296.5 214c-3.6 0 -6.5 2.9 -6.5 6.5v76c0 3.6 2.9 6.5 6.5 6.5c3.6 0 6.5 -2.9 6.5 -6.5v-76c0 -3.6 -2.9 -6.5 -6.5 -6.5z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#af5303"
+        android:name="Rectángulo redondeado 6"
+        android:pathData="m105.5 215c3.6 0 6.5 2.9 6.5 6.5v75c0 3.6 -2.9 6.5 -6.5 6.5c-3.6 0 -6.5 -2.9 -6.5 -6.5v-75c0 -3.6 2.9 -6.5 6.5 -6.5z" />
+    <path
+        android:name="Rectángulo redondeado 6"
+        android:pathData="m105.5 215c-3.6 0 -6.5 2.9 -6.5 6.5v75c0 3.6 2.9 6.5 6.5 6.5c3.6 0 6.5 -2.9 6.5 -6.5v-75c0 -3.6 -2.9 -6.5 -6.5 -6.5z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#af5303"
+        android:name="Rectángulo redondeado 7"
+        android:pathData="m84.5 141h234c3.6 0 6.5 2.9 6.5 6.5c0 3.6 -2.9 6.5 -6.5 6.5h-234c-3.6 0 -6.5 -2.9 -6.5 -6.5c0 -3.6 2.9 -6.5 6.5 -6.5z" />
+    <path
+        android:name="Rectángulo redondeado 7"
+        android:pathData="m84.5 141c-3.6 0 -6.5 2.9 -6.5 6.5c0 3.6 2.9 6.5 6.5 6.5h234c3.6 0 6.5 -2.9 6.5 -6.5c0 -3.6 -2.9 -6.5 -6.5 -6.5z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#af5303"
+        android:name="Forma 1"
+        android:pathData="m89.2 150.2 -8.5 -8.5 40 -40 8.5 8.5 -40 40z" />
+    <path
+        android:name="Forma 1"
+        android:pathData="m120.8 101.8 -40 40 8.5 8.5 40 -40 -8.5 -8.5z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#af5303"
+        android:name="Forma 2"
+        android:pathData="m271.8 108.2 8.5 -8.5 45 45 -8.5 8.5 -45 -45z" />
+    <path
+        android:name="Forma 2"
+        android:pathData="m280.2 99.8 -8.5 8.5 45 45 8.5 -8.5 -45 -45z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#af5303"
+        android:name="Rectángulo redondeado 8"
+        android:pathData="m82 146c3.3 0 6 2.7 6 6v29c0 3.3 -2.7 6 -6 6c-3.3 0 -6 -2.7 -6 -6v-29c0 -3.3 2.7 -6 6 -6z" />
+    <path
+        android:name="Rectángulo redondeado 8"
+        android:pathData="m82 146c-3.3 0 -6 2.7 -6 6v29c0 3.3 2.7 6 6 6c3.3 0 6 -2.7 6 -6v-29c0 -3.3 -2.7 -6 -6 -6z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#af5303"
+        android:name="Rectángulo redondeado 8 copia"
+        android:pathData="m129 148c3.3 0 6 2.7 6 6v29c0 3.3 -2.7 6 -6 6c-3.3 0 -6 -2.7 -6 -6v-29c0 -3.3 2.7 -6 6 -6z" />
+    <path
+        android:name="Rectángulo redondeado 8 copia"
+        android:pathData="m129 148c-3.3 0 -6 2.7 -6 6v29c0 3.3 2.7 6 6 6c3.3 0 6 -2.7 6 -6v-29c0 -3.3 -2.7 -6 -6 -6z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#af5303"
+        android:name="Rectángulo redondeado 8 copia 2"
+        android:pathData="m178 148c3.3 0 6 2.7 6 6v29c0 3.3 -2.7 6 -6 6c-3.3 0 -6 -2.7 -6 -6v-29c0 -3.3 2.7 -6 6 -6z" />
+    <path
+        android:name="Rectángulo redondeado 8 copia 2"
+        android:pathData="m178 148c-3.3 0 -6 2.7 -6 6v29c0 3.3 2.7 6 6 6c3.3 0 6 -2.7 6 -6v-29c0 -3.3 -2.7 -6 -6 -6z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#af5303"
+        android:name="Rectángulo redondeado 8 copia 3"
+        android:pathData="m225 148c3.3 0 6 2.7 6 6v29c0 3.3 -2.7 6 -6 6c-3.3 0 -6 -2.7 -6 -6v-29c0 -3.3 2.7 -6 6 -6z" />
+    <path
+        android:name="Rectángulo redondeado 8 copia 3"
+        android:pathData="m225 148c-3.3 0 -6 2.7 -6 6v29c0 3.3 2.7 6 6 6c3.3 0 6 -2.7 6 -6v-29c0 -3.3 -2.7 -6 -6 -6z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#af5303"
+        android:name="Rectángulo redondeado 8 copia 4"
+        android:pathData="m272 147c3.3 0 6 2.7 6 6v29c0 3.3 -2.7 6 -6 6c-3.3 0 -6 -2.7 -6 -6v-29c0 -3.3 2.7 -6 6 -6z" />
+    <path
+        android:name="Rectángulo redondeado 8 copia 4"
+        android:pathData="m272 147c-3.3 0 -6 2.7 -6 6v29c0 3.3 2.7 6 6 6c3.3 0 6 -2.7 6 -6v-29c0 -3.3 -2.7 -6 -6 -6z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#af5303"
+        android:name="Rectángulo redondeado 8 copia 5"
+        android:pathData="m319 141c3.3 0 6 2.7 6 6v29c0 3.3 -2.7 6 -6 6c-3.3 0 -6 -2.7 -6 -6v-29c0 -3.3 2.7 -6 6 -6z" />
+    <path
+        android:name="Rectángulo redondeado 8 copia 5"
+        android:pathData="m319 141c-3.3 0 -6 2.7 -6 6v29c0 3.3 2.7 6 6 6c3.3 0 6 -2.7 6 -6v-29c0 -3.3 -2.7 -6 -6 -6z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#f44336"
+        android:name="Elipse 1"
+        android:pathData="m105 156c16 0 29 11.4 29 25.5c0 14.1 -13 25.5 -29 25.5c-16 0 -29 -11.4 -29 -25.5c0 -14.1 13 -25.5 29 -25.5z" />
+    <path
+        android:name="Elipse 1"
+        android:pathData="m105 168c10.9 0 17 7.4 17 13.5c0 6.1 -6.1 13.5 -17 13.5c-10.9 0 -17 -7.4 -17 -13.5c0 -6.1 6.1 -13.5 17 -13.5zm0 -12c-16 0 -29 11.4 -29 25.5c0 14.1 13 25.5 29 25.5c16 0 29 -11.4 29 -25.5c0 -14.1 -13 -25.5 -29 -25.5z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#f44336"
+        android:name="Elipse 1 copia"
+        android:pathData="m155 156c16 0 29 11.4 29 25.5c0 14.1 -13 25.5 -29 25.5c-16 0 -29 -11.4 -29 -25.5c0 -14.1 13 -25.5 29 -25.5z" />
+    <path
+        android:name="Elipse 1 copia"
+        android:pathData="m155 168c10.9 0 17 7.4 17 13.5c0 6.1 -6.1 13.5 -17 13.5c-10.9 0 -17 -7.4 -17 -13.5c0 -6.1 6.1 -13.5 17 -13.5zm0 -12c-16 0 -29 11.4 -29 25.5c0 14.1 13 25.5 29 25.5c16 0 29 -11.4 29 -25.5c0 -14.1 -13 -25.5 -29 -25.5z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#f44336"
+        android:name="Elipse 1 copia 2"
+        android:pathData="m201 157c16 0 29 11.4 29 25.5c0 14.1 -13 25.5 -29 25.5c-16 0 -29 -11.4 -29 -25.5c0 -14.1 13 -25.5 29 -25.5z" />
+    <path
+        android:name="Elipse 1 copia 2"
+        android:pathData="m201 169c10.9 0 17 7.4 17 13.5c0 6.1 -6.1 13.5 -17 13.5c-10.9 0 -17 -7.4 -17 -13.5c0 -6.1 6.1 -13.5 17 -13.5zm0 -12c-16 0 -29 11.4 -29 25.5c0 14.1 13 25.5 29 25.5c16 0 29 -11.4 29 -25.5c0 -14.1 -13 -25.5 -29 -25.5z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#f44336"
+        android:name="Elipse 1 copia 3"
+        android:pathData="m249 157c16 0 29 11.4 29 25.5c0 14.1 -13 25.5 -29 25.5c-16 0 -29 -11.4 -29 -25.5c0 -14.1 13 -25.5 29 -25.5z" />
+    <path
+        android:name="Elipse 1 copia 3"
+        android:pathData="m249 169c10.9 0 17 7.4 17 13.5c0 6.1 -6.1 13.5 -17 13.5c-10.9 0 -17 -7.4 -17 -13.5c0 -6.1 6.1 -13.5 17 -13.5zm0 -12c-16 0 -29 11.4 -29 25.5c0 14.1 13 25.5 29 25.5c16 0 29 -11.4 29 -25.5c0 -14.1 -13 -25.5 -29 -25.5z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#f44336"
+        android:name="Elipse 1 copia 4"
+        android:pathData="m296 156c16 0 29 11.4 29 25.5c0 14.1 -13 25.5 -29 25.5c-16 0 -29 -11.4 -29 -25.5c0 -14.1 13 -25.5 29 -25.5z" />
+    <path
+        android:name="Elipse 1 copia 4"
+        android:pathData="m296 168c10.9 0 17 7.4 17 13.5c0 6.1 -6.1 13.5 -17 13.5c-10.9 0 -17 -7.4 -17 -13.5c0 -6.1 6.1 -13.5 17 -13.5zm0 -12c-16 0 -29 11.4 -29 25.5c0 14.1 13 25.5 29 25.5c16 0 29 -11.4 29 -25.5c0 -14.1 -13 -25.5 -29 -25.5z"
+        android:fillColor="#5b0004" />
+    <path
+        android:fillColor="#f44336"
+        android:name="Rectángulo 2"
+        android:pathData="m88 154h35v29h-35v-29z" />
+    <path
+        android:fillColor="#f44336"
+        android:name="Rectángulo 2 copia"
+        android:pathData="m137 154h35v29h-35v-29z" />
+    <path
+        android:fillColor="#f44336"
+        android:name="Rectángulo 2 copia 2"
+        android:pathData="m184 154h35v29h-35v-29z" />
+    <path
+        android:fillColor="#f44336"
+        android:name="Rectángulo 2 copia 3"
+        android:pathData="m231 154h35v29h-35v-29z" />
+    <path
+        android:fillColor="#f44336"
+        android:name="Rectángulo 2 copia 4"
+        android:pathData="m278 154h35v29h-35v-29z" />
+    <path
+        android:fillColor="#5b0004"
+        android:name="Rectángulo 3"
+        android:pathData="m127 150h10v36h-10v-36z" />
+</vector>

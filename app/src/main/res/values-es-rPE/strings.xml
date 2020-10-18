@@ -4,4 +4,24 @@
     <string name="shopping_cart">Compras</string>
     <string name="home">Inicio</string>
     <string name="profile">Perfil</string>
+    <string name="email">Correo</string>
+    <string name="password">Contraseña</string>
+    <string name="login">INGRESAR</string>
+    <string name="no_account">¿Aun no tienes una cuenta?</string>
+    <string name="registry">Ingresa Aquí</string>
+    <string name="exit_text">Una vez más para salir</string>
+    <string name="registry_account">Registrar</string>
+    <string name="logout">Salir</string>
+    <string name="subtitle_register">Tu increible experiencia empieza aquÍ</string>
+    <string name="signUp">REGISTRAR</string>
+    <string name="direction">Dirección</string>
+    <string name="dni">Dni</string>
+    <string name="lastName_mother">Apellido materno</string>
+    <string name="lastName_father">Apellido paterno</string>
+    <string name="name">Nombre</string>
+    <string name="img_logo">Logo de la App</string>
+    <string name="return_notification">Regresa pronto</string>
+    <string name="title_notification">Hasta luego</string>
+    <string name="welcome_text">¡Bienvenidos!</string>
+    <string name="body_text">Inicia sesión para continuar con tu increible experiencia</string>
 </resources>
