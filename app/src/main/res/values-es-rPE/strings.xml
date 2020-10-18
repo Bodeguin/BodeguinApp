@@ -24,4 +24,7 @@
     <string name="title_notification">Hasta luego</string>
     <string name="welcome_text">¡Bienvenidos!</string>
     <string name="body_text">Inicia sesión para continuar con tu increible experiencia</string>
+    <string name="wrong_credentials">Correo o contraseña incorrecta</string>
+    <string name="empty_credentials">Correo o contraseña debe estar completo</string>
+    <string name="not_internet">Asegurece de tener una conexión de datos activa</string>
 </resources>

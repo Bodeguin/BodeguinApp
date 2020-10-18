@@ -23,4 +23,7 @@
     <string name="title_notification">See you</string>
     <string name="welcome_text">Welcome!</string>
     <string name="body_text">Sign in to continue with your incredible experience</string>
+    <string name="wrong_credentials">Invalid email or password</string>
+    <string name="empty_credentials">Email or Password must be complete</string>
+    <string name="not_internet">Make sure you have an active data connection</string>
 </resources>
