@@ -1,6 +1,6 @@
-package pe.edu.upc.bodeguin.data.network.model.response
+package pe.edu.upc.bodeguin.data.network.model.request
 
-class AuthResponse (
+class SignUpRequest (
     var id: Int? = 0,
     var correo: String? = "",
     var password: String? = "",

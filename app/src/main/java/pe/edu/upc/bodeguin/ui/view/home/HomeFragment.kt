@@ -1,11 +1,14 @@
-package pe.edu.upc.bodeguin.ui.view.fragments
+package pe.edu.upc.bodeguin.ui.view.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import com.wajahatkarim3.roomexplorer.RoomExplorer
 import pe.edu.upc.bodeguin.R
+import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
 
 class HomeFragment : Fragment() {
 

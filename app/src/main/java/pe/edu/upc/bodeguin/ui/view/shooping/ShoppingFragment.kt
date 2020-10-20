@@ -1,4 +1,4 @@
-package pe.edu.upc.bodeguin.ui.view.fragments
+package pe.edu.upc.bodeguin.ui.view.shooping
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

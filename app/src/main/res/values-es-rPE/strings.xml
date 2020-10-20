@@ -28,4 +28,8 @@
     <string name="empty_credentials">Correo o contraseña debe estar completo</string>
     <string name="not_internet">Asegurece de tener una conexión de datos activa</string>
     <string name="no_connection_services">Tenemos un error de conexión con el servicio, intentelo más tarde.</string>
+    <string name="empty_inputs">Todos los campos deben estar completados</string>
+    <string name="login_error">Su usuario fue creado pero hay problemas para acceder, intente nuevamente.</string>
+    <string name="register_error">Tuvimos problemas para registrar sus usuario, inténtelo denuevo más tarde.</string>
+    <string name="wrong_inputs">Algunos campos estan incorrectos, reviselos nuevamente.</string>
 </resources>

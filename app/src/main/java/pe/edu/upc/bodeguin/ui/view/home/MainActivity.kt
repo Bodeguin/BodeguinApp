@@ -1,8 +1,8 @@
-package pe.edu.upc.bodeguin.ui.view.activities
+package pe.edu.upc.bodeguin.ui.view.home
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -15,23 +15,45 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
 import pe.edu.upc.bodeguin.R
-import pe.edu.upc.bodeguin.ui.view.fragments.HomeFragment
-import pe.edu.upc.bodeguin.ui.view.fragments.ProfileFragment
-import pe.edu.upc.bodeguin.ui.view.fragments.ShoppingFragment
+import pe.edu.upc.bodeguin.data.network.api.ApiGateway
+import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
+import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
+import pe.edu.upc.bodeguin.data.repository.UserRepository
+import pe.edu.upc.bodeguin.ui.view.authentication.LoginActivity
+import pe.edu.upc.bodeguin.ui.view.profile.ProfileFragment
+import pe.edu.upc.bodeguin.ui.view.profile.UserListener
+import pe.edu.upc.bodeguin.ui.view.shooping.ShoppingFragment
+import pe.edu.upc.bodeguin.ui.viewModel.profile.UserViewModel
+import pe.edu.upc.bodeguin.ui.viewModel.profile.UserViewModelFactory
+import pe.edu.upc.bodeguin.util.Coroutines
+import pe.edu.upc.bodeguin.util.snackBar
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), UserListener {
 
     private lateinit var toolbar: Toolbar
     private var notificationId = 0
+
+    private lateinit var userViewModel: UserViewModel
 
     companion object {
         const val CHANNEL_ID = "pe.edu.upc.bodega.NOTIFICATION"
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val networkConnectionInterceptor = NetworkConnectionInterceptor(this)
+        val api = ApiGateway
+        val db = AppDatabase.getInstance(this)
+        val repository = UserRepository(networkConnectionInterceptor, api, db)
+        val factory = UserViewModelFactory(application, repository)
+        userViewModel = ViewModelProvider(this, factory).get(UserViewModel::class.java)
+        userViewModel.userListener = this
+
         setContentView(R.layout.activity_main)
         navigateTo(bnHome.menu.findItem(R.id.iHome))
         bnHome.selectedItemId = R.id.iHome
@@ -47,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         supportActionBar?.title = resources.getString(R.string.app_name)
-        supportActionBar?.setIcon(resources.getDrawable(R.drawable.ic_logo))
+        supportActionBar?.setIcon(resources.getDrawable(R.drawable.ic_logo, null))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -58,8 +80,9 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.btLogout -> {
-                appNotify()
-                logOut()
+                Coroutines.main {
+                    userViewModel.deleteUser()
+                }
                 return true
             }
             else -> super.onOptionsItemSelected(item)
@@ -105,7 +128,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun appNotify() {
-        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+        val builder = NotificationCompat.Builder(this,
+            CHANNEL_ID
+        )
             .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(resources.getString(R.string.title_notification))
             .setContentText(resources.getString(R.string.return_notification))
@@ -115,5 +140,14 @@ class MainActivity : AppCompatActivity() {
             notify(notificationId, builder.build())
             notificationId++
         }
+    }
+
+    override fun onSuccess() {
+        appNotify()
+        logOut()
+    }
+
+    override fun onFailure(message: String) {
+        flContent.snackBar(message)
     }
 }

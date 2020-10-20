@@ -15,7 +15,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.view.activities.LaunchActivity">
+        <activity android:name=".MainActivityTest"></activity>
+        <activity android:name=".ui.view.LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,20 +24,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.view.activities.RegisterActivity"
-            android:parentActivityName=".ui.view.activities.LoginActivity"
+            android:name=".ui.view.authentication.RegisterActivity"
+            android:parentActivityName=".ui.view.authentication.LoginActivity"
             android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.view.activities.LoginActivity" />
+                android:value=".ui.view.authentication.LoginActivity" />
         </activity>
         <activity
-            android:name=".ui.view.activities.LoginActivity"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
+            android:name=".ui.view.authentication.LoginActivity"
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
-            android:name=".ui.view.activities.MainActivity"
-            android:windowSoftInputMode="adjustPan"/>
+            android:name=".ui.view.home.MainActivity"
+            android:windowSoftInputMode="adjustPan" />
 
         <meta-data
             android:name="preloaded_fonts"

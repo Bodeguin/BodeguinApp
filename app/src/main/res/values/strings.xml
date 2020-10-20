@@ -27,4 +27,8 @@
     <string name="empty_credentials">Email or Password must be complete</string>
     <string name="not_internet">Make sure you have an active data connection</string>
     <string name="no_connection_services">We have a  connection error to the services, please try later.</string>
+    <string name="empty_inputs">All inputs must be completed</string>
+    <string name="login_error">Your user was created but we have problems to login, please try again.</string>
+    <string name="register_error">We had problems to register your user, try again later.</string>
+    <string name="wrong_inputs">Some inputs were wrong, check them again.</string>
 </resources>

@@ -1,15 +1,18 @@
-package pe.edu.upc.bodeguin.ui.viewModel
+package pe.edu.upc.bodeguin.ui.viewModel.profile
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import pe.edu.upc.bodeguin.data.repository.AuthRepository
+import pe.edu.upc.bodeguin.data.repository.UserRepository
 
-class AuthViewModelFactory(
+class UserViewModelFactory(
     private val application: Application,
-    private val repository: AuthRepository
+    private val repository: UserRepository
 ): ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return AuthViewModel(application, repository) as T
+        return UserViewModel(
+            application,
+            repository
+        ) as T
     }
 }

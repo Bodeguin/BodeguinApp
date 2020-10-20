@@ -4,6 +4,8 @@ import android.content.Context
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.core.widget.ContentLoadingProgressBar
+import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.snackbar.Snackbar
 import pe.edu.upc.bodeguin.R
 
@@ -19,10 +21,10 @@ fun View.snackBar(message: String) {
     }.show()
 }
 
-fun ProgressBar.show() {
+fun LottieAnimationView.show() {
     visibility = View.VISIBLE
 }
 
-fun ProgressBar.hide() {
+fun LottieAnimationView.hide() {
     visibility = View.GONE
 }

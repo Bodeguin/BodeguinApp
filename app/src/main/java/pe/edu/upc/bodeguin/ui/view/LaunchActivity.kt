@@ -1,10 +1,11 @@
-package pe.edu.upc.bodeguin.ui.view.activities
+package pe.edu.upc.bodeguin.ui.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import pe.edu.upc.bodeguin.R
+import pe.edu.upc.bodeguin.ui.view.authentication.LoginActivity
 
 class LaunchActivity : AppCompatActivity() {
 
@@ -25,9 +26,7 @@ class LaunchActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        if(mRunnable != null){
-            mDelayHandler!!.removeCallbacks(mRunnable)
-        }
+        mDelayHandler!!.removeCallbacks(mRunnable)
         super.onDestroy()
     }
 }

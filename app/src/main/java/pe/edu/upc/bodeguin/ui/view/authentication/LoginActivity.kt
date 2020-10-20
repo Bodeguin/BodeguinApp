@@ -1,4 +1,4 @@
-package pe.edu.upc.bodeguin.ui.view.activities
+package pe.edu.upc.bodeguin.ui.view.authentication
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -8,21 +8,25 @@ import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.airbnb.lottie.LottieAnimationView
+import com.wajahatkarim3.roomexplorer.RoomExplorer
 import kotlinx.android.synthetic.main.activity_login.*
 import pe.edu.upc.bodeguin.R
 import pe.edu.upc.bodeguin.data.network.api.ApiGateway
 import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
 import pe.edu.upc.bodeguin.data.network.model.response.AuthResponse
-import pe.edu.upc.bodeguin.data.repository.AuthRepository
+import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
+import pe.edu.upc.bodeguin.data.repository.UserRepository
 import pe.edu.upc.bodeguin.databinding.ActivityLoginBinding
-import pe.edu.upc.bodeguin.ui.view.listeners.AuthListener
-import pe.edu.upc.bodeguin.ui.viewModel.AuthViewModel
-import pe.edu.upc.bodeguin.ui.viewModel.AuthViewModelFactory
+import pe.edu.upc.bodeguin.ui.view.home.MainActivity
+import pe.edu.upc.bodeguin.ui.viewModel.authentication.AuthViewModel
+import pe.edu.upc.bodeguin.ui.viewModel.authentication.AuthViewModelFactory
 import pe.edu.upc.bodeguin.util.hide
 import pe.edu.upc.bodeguin.util.show
 import pe.edu.upc.bodeguin.util.snackBar
 
-class LoginActivity : AppCompatActivity(), AuthListener {
+class LoginActivity : AppCompatActivity(),
+    AuthListener {
 
     private var backPress = 0
 
@@ -32,7 +36,8 @@ class LoginActivity : AppCompatActivity(), AuthListener {
 
         val networkConnectionInterceptor = NetworkConnectionInterceptor(this)
         val api = ApiGateway
-        val repository = AuthRepository(networkConnectionInterceptor, api)
+        val db = AppDatabase.getInstance(this)
+        val repository = UserRepository(networkConnectionInterceptor, api, db)
         val factory = AuthViewModelFactory(application, repository)
 
         val authViewModel = ViewModelProvider(this,
@@ -69,11 +74,13 @@ class LoginActivity : AppCompatActivity(), AuthListener {
     }
 
     override fun onStarted() {
-        progressBar.show()
+        lottieLoading.show()
+        lottieLoading.playAnimation()
     }
 
     override fun onSuccess(loginResponse: AuthResponse) {
-        progressBar.hide()
+        lottieLoading.hide()
+        lottieLoading.cancelAnimation()
         if (loginResponse.id == 0) rootLayout.snackBar(resources.getString(R.string.wrong_credentials))
         else {
             saveData(loginResponse.id.toString())
@@ -82,7 +89,8 @@ class LoginActivity : AppCompatActivity(), AuthListener {
     }
 
     override fun onFailure(message: String) {
-        progressBar.hide()
+        lottieLoading.hide()
+        lottieLoading.cancelAnimation()
         rootLayout.snackBar(message)
     }
 }
