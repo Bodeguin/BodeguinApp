@@ -15,8 +15,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.view.WelcomeActivity"></activity>
-        <activity android:name=".MainActivityTest" />
+        <activity android:name=".ui.view.WelcomeActivity"/>
         <activity android:name=".ui.view.LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
