@@ -31,4 +31,6 @@
     <string name="login_error">Your user was created but we have problems to login, please try again.</string>
     <string name="register_error">We had problems to register your user, try again later.</string>
     <string name="wrong_inputs">Some inputs were wrong, check them again.</string>
+    <string name="personal_data">Personal information</string>
+    <string name="user_detail">User detail</string>
 </resources>

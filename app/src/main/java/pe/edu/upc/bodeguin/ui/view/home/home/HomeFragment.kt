@@ -1,13 +1,16 @@
-package pe.edu.upc.bodeguin.ui.view.profile
+package pe.edu.upc.bodeguin.ui.view.home.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import com.wajahatkarim3.roomexplorer.RoomExplorer
 import pe.edu.upc.bodeguin.R
+import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
 
-class ProfileFragment : Fragment() {
+class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +20,6 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 }

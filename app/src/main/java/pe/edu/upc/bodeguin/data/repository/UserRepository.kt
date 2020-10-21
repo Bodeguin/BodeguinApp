@@ -30,5 +30,4 @@ class UserRepository(
     suspend fun insertUser(user: User) = db.userDao().insert(user)
     fun getUser() = db.userDao().getUser()
     fun deleteUser() = db.userDao().deleteAll()
-
 }

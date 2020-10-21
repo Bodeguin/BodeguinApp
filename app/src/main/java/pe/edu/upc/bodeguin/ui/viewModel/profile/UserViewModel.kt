@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import pe.edu.upc.bodeguin.data.persistance.model.User
 import pe.edu.upc.bodeguin.data.repository.UserRepository
-import pe.edu.upc.bodeguin.ui.view.profile.UserListener
+import pe.edu.upc.bodeguin.ui.view.home.profile.UserListener
 import pe.edu.upc.bodeguin.util.Coroutines
 
 class UserViewModel(
@@ -16,6 +16,8 @@ class UserViewModel(
     private val repository: UserRepository?
 ) : AndroidViewModel(application!!) {
     var userListener: UserListener? = null
+
+    var user = repository!!.getUser()
 
     fun deleteUser() = viewModelScope.launch(Dispatchers.IO) {
         try {

@@ -1,4 +1,4 @@
-package pe.edu.upc.bodeguin.ui.view.profile
+package pe.edu.upc.bodeguin.ui.view.home.profile
 
 import pe.edu.upc.bodeguin.data.network.model.response.AuthResponse
 

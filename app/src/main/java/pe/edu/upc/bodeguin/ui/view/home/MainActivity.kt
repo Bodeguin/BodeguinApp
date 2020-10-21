@@ -23,15 +23,17 @@ import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
 import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
 import pe.edu.upc.bodeguin.data.repository.UserRepository
 import pe.edu.upc.bodeguin.ui.view.authentication.LoginActivity
-import pe.edu.upc.bodeguin.ui.view.profile.ProfileFragment
-import pe.edu.upc.bodeguin.ui.view.profile.UserListener
-import pe.edu.upc.bodeguin.ui.view.shooping.ShoppingFragment
+import pe.edu.upc.bodeguin.ui.view.home.home.HomeFragment
+import pe.edu.upc.bodeguin.ui.view.home.profile.ProfileFragment
+import pe.edu.upc.bodeguin.ui.view.home.profile.UserListener
+import pe.edu.upc.bodeguin.ui.view.home.shooping.ShoppingFragment
 import pe.edu.upc.bodeguin.ui.viewModel.profile.UserViewModel
 import pe.edu.upc.bodeguin.ui.viewModel.profile.UserViewModelFactory
 import pe.edu.upc.bodeguin.util.Coroutines
 import pe.edu.upc.bodeguin.util.snackBar
 
-class MainActivity : AppCompatActivity(), UserListener {
+class MainActivity : AppCompatActivity(),
+    UserListener {
 
     private lateinit var toolbar: Toolbar
     private var notificationId = 0

@@ -18,6 +18,7 @@ import pe.edu.upc.bodeguin.data.network.model.response.AuthResponse
 import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
 import pe.edu.upc.bodeguin.data.repository.UserRepository
 import pe.edu.upc.bodeguin.databinding.ActivityLoginBinding
+import pe.edu.upc.bodeguin.ui.view.WelcomeActivity
 import pe.edu.upc.bodeguin.ui.view.home.MainActivity
 import pe.edu.upc.bodeguin.ui.viewModel.authentication.AuthViewModel
 import pe.edu.upc.bodeguin.ui.viewModel.authentication.AuthViewModelFactory

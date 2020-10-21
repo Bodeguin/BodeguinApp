@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import pe.edu.upc.bodeguin.data.repository.UserRepository
 
+@Suppress("UNCHECKED_CAST")
 class UserViewModelFactory(
     private val application: Application,
     private val repository: UserRepository

@@ -161,6 +161,7 @@
             app:lottie_imageAssetsFolder="assets"
             app:lottie_fileName="loading_fruit.json"
             app:lottie_loop="true"
+            android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
