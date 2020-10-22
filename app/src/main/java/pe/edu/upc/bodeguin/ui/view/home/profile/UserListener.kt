@@ -6,4 +6,5 @@ interface UserListener {
     fun onSuccess()
     fun onSuccessUpdate(user: User)
     fun onFailure(message: String)
+    fun onClose()
 }

@@ -157,4 +157,8 @@ class MainActivity : AppCompatActivity(),
     override fun onFailure(message: String) {
         flContent.snackBar(message)
     }
+
+    override fun onClose() {
+        TODO("Not yet implemented")
+    }
 }
