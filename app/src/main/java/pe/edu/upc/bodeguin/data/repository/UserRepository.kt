@@ -27,6 +27,12 @@ class UserRepository(
     suspend fun createUser(signUpRequest: SignUpRequest) : AuthResponse {
         return apiRequest { api.instance(networkConnectionInterceptor).signUp(signUpRequest) }
     }
+    suspend fun getUserApi(id: Int) : AuthResponse {
+        return apiRequest { api.instance(networkConnectionInterceptor).getUser(id) }
+    }
+    suspend fun updateUserApi(id: Int, signUpRequest: SignUpRequest) : AuthResponse {
+        return apiRequest { api.instance(networkConnectionInterceptor).updateUserApi(id, signUpRequest) }
+    }
     suspend fun insertUser(user: User) = db.userDao().insert(user)
     fun getUser() = db.userDao().getUser()
     fun deleteUser() = db.userDao().deleteAll()

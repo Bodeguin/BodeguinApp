@@ -1,60 +1,66 @@
-package pe.edu.upc.bodeguin.ui.view.home.profile
+package pe.edu.upc.bodeguin.ui.view.home.profile.dialog
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
+import kotlinx.android.synthetic.main.fragment_personal_data.*
+import kotlinx.android.synthetic.main.fragment_personal_data.view.*
 import pe.edu.upc.bodeguin.R
+import pe.edu.upc.bodeguin.data.network.api.ApiGateway
+import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
+import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
+import pe.edu.upc.bodeguin.data.persistance.model.User
+import pe.edu.upc.bodeguin.data.repository.UserRepository
+import pe.edu.upc.bodeguin.ui.view.home.profile.UserListener
+import pe.edu.upc.bodeguin.ui.viewModel.profile.UserViewModel
+import pe.edu.upc.bodeguin.ui.viewModel.profile.UserViewModelFactory
+import pe.edu.upc.bodeguin.util.snackBar
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class PersonalDataFragment : DialogFragment(), UserListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [PersonalDataFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class PersonalDataFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var userViewModel: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        setStyle(STYLE_NORMAL, R.style.FullScreeDialogTheme)
+
+        val networkConnectionInterceptor = NetworkConnectionInterceptor(activity!!.applicationContext)
+        val api = ApiGateway
+        val db = AppDatabase.getInstance(activity!!.applicationContext)
+        val repository = UserRepository(networkConnectionInterceptor, api, db)
+        val factory = UserViewModelFactory(activity!!.application, repository)
+        userViewModel = ViewModelProvider(this, factory).get(UserViewModel::class.java)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_personal_data, container, false)
+        val view = inflater.inflate(R.layout.fragment_personal_data, container, false)
+        view.bClose.setOnClickListener {
+            dismiss()
+        }
+        view.bSave.setOnClickListener {
+            val email = view.tiEmailDialog.text.toString()
+            userViewModel.create(14, email)
+        }
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PersonalDataFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PersonalDataFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onSuccess() {
+        clPersonalData.snackBar("c logro")
+    }
+
+    override fun onSuccessUpdate(user: User) {
+        dismiss()
+    }
+
+    override fun onFailure(message: String) {
+        Log.d("campo", "error: " + message)
+        clPersonalData.snackBar(message)
     }
 }

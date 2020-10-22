@@ -33,4 +33,6 @@
     <string name="wrong_inputs">Some inputs were wrong, check them again.</string>
     <string name="personal_data">Personal information</string>
     <string name="user_detail">User detail</string>
+    <string name="save">Save</string>
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>

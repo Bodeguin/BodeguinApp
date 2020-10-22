@@ -21,6 +21,7 @@ import pe.edu.upc.bodeguin.R
 import pe.edu.upc.bodeguin.data.network.api.ApiGateway
 import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
 import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
+import pe.edu.upc.bodeguin.data.persistance.model.User
 import pe.edu.upc.bodeguin.data.repository.UserRepository
 import pe.edu.upc.bodeguin.ui.view.authentication.LoginActivity
 import pe.edu.upc.bodeguin.ui.view.home.home.HomeFragment
@@ -147,6 +148,10 @@ class MainActivity : AppCompatActivity(),
     override fun onSuccess() {
         appNotify()
         logOut()
+    }
+
+    override fun onSuccessUpdate(user: User) {
+        TODO("Not yet implemented")
     }
 
     override fun onFailure(message: String) {

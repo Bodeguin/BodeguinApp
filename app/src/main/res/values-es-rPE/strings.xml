@@ -34,4 +34,5 @@
     <string name="wrong_inputs">Algunos campos estan incorrectos, reviselos nuevamente.</string>
     <string name="personal_data">Datos personales</string>
     <string name="user_detail">Detalle de usuario</string>
+    <string name="save">Guardar</string>
 </resources>
