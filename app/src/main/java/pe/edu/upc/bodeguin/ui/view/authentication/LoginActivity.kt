@@ -8,17 +8,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.airbnb.lottie.LottieAnimationView
-import com.wajahatkarim3.roomexplorer.RoomExplorer
 import kotlinx.android.synthetic.main.activity_login.*
 import pe.edu.upc.bodeguin.R
 import pe.edu.upc.bodeguin.data.network.api.ApiGateway
 import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
-import pe.edu.upc.bodeguin.data.network.model.response.AuthResponse
+import pe.edu.upc.bodeguin.data.network.model.response.LoginResponse
 import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
 import pe.edu.upc.bodeguin.data.repository.UserRepository
 import pe.edu.upc.bodeguin.databinding.ActivityLoginBinding
-import pe.edu.upc.bodeguin.ui.view.WelcomeActivity
 import pe.edu.upc.bodeguin.ui.view.home.MainActivity
 import pe.edu.upc.bodeguin.ui.viewModel.authentication.AuthViewModel
 import pe.edu.upc.bodeguin.ui.viewModel.authentication.AuthViewModelFactory
@@ -68,9 +65,10 @@ class LoginActivity : AppCompatActivity(),
         }
     }
 
-    private fun saveData(id: String) {
+    private fun saveData(token: String, id: String) {
         val editor: SharedPreferences.Editor = getSharedPreferences("data", 0).edit()
-        editor.putString("token", id)
+        editor.putString("token", token)
+        editor.putString("id", id)
         editor.apply()
     }
 
@@ -79,12 +77,12 @@ class LoginActivity : AppCompatActivity(),
         lottieLoading.playAnimation()
     }
 
-    override fun onSuccess(loginResponse: AuthResponse) {
+    override fun onSuccess(loginResponse: LoginResponse) {
         lottieLoading.hide()
         lottieLoading.cancelAnimation()
-        if (loginResponse.id == 0) rootLayout.snackBar(resources.getString(R.string.wrong_credentials))
+        if (loginResponse.data.id == 0) rootLayout.snackBar(resources.getString(R.string.wrong_credentials))
         else {
-            saveData(loginResponse.id.toString())
+            saveData(loginResponse.data.token.toString(), loginResponse.data.id.toString())
             startActivity(Intent(applicationContext, MainActivity::class.java))
         }
     }

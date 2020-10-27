@@ -3,24 +3,33 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/iShopping"
-        android:icon="@drawable/shopping_cart"
-        android:title="@string/shopping_cart"
-        app:showAsAction="ifRoom"
-        android:state_checked="true"
-        android:color="@color/colorPrimaryDark"/>
+        android:id="@+id/iStore"
+        android:color="@color/colorPrimaryDark"
+        android:icon="@drawable/ic_place"
+        android:title="@string/store"
+        android:state_checked="true" />
+    <item
+        android:id="@+id/iSearch"
+        android:color="@color/colorPrimaryDark"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search"
+        android:state_checked="true" />
     <item
         android:id="@+id/iHome"
-        android:icon="@drawable/home"
-        android:title="@string/home"
-        app:showAsAction="ifRoom"
+        android:color="@color/colorPrimaryDark"
+        android:icon="@drawable/ic_store"
         android:state_checked="true"
-        android:color="@color/colorPrimaryDark"/>
+        android:title="@string/home" />
+    <item
+        android:id="@+id/iShopping"
+        android:color="@color/colorPrimaryDark"
+        android:icon="@drawable/shopping_cart"
+        android:state_checked="true"
+        android:title="@string/shopping_cart" />
     <item
         android:id="@+id/iProfile"
         android:icon="@drawable/account_circle"
         android:title="@string/profile"
-        app:showAsAction="ifRoom"
         android:state_checked="true"
         android:color="@color/colorPrimaryDark"/>
 </menu>

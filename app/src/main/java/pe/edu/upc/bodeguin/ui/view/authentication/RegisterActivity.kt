@@ -18,7 +18,6 @@ import pe.edu.upc.bodeguin.data.persistance.model.User
 import pe.edu.upc.bodeguin.data.repository.UserRepository
 import pe.edu.upc.bodeguin.databinding.ActivityRegisterBinding
 import pe.edu.upc.bodeguin.ui.view.WelcomeActivity
-import pe.edu.upc.bodeguin.ui.view.home.MainActivity
 import pe.edu.upc.bodeguin.ui.viewModel.authentication.AuthViewModel
 import pe.edu.upc.bodeguin.ui.viewModel.authentication.AuthViewModelFactory
 import pe.edu.upc.bodeguin.util.hide

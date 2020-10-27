@@ -1,10 +1,9 @@
 package pe.edu.upc.bodeguin.ui.view.authentication
 
-import androidx.lifecycle.LiveData
-import pe.edu.upc.bodeguin.data.network.model.response.AuthResponse
+import pe.edu.upc.bodeguin.data.network.model.response.LoginResponse
 
 interface AuthListener {
     fun onStarted()
-    fun onSuccess(loginResponse: AuthResponse)
+    fun onSuccess(loginResponse: LoginResponse)
     fun onFailure(message: String)
 }

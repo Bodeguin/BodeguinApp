@@ -1,37 +1,31 @@
 package pe.edu.upc.bodeguin.data.repository
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.google.gson.Gson
 import pe.edu.upc.bodeguin.data.network.api.ApiGateway
 import pe.edu.upc.bodeguin.data.network.api.SafeApiRequest
 import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
-import pe.edu.upc.bodeguin.data.network.model.request.AuthRequest
+import pe.edu.upc.bodeguin.data.network.model.request.LoginRequest
 import pe.edu.upc.bodeguin.data.network.model.request.SignUpRequest
-import pe.edu.upc.bodeguin.data.network.model.response.AuthResponse
-import pe.edu.upc.bodeguin.data.network.service.AuthService
+import pe.edu.upc.bodeguin.data.network.model.request.UpdateRequest
+import pe.edu.upc.bodeguin.data.network.model.response.*
 import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
 import pe.edu.upc.bodeguin.data.persistance.model.User
-import retrofit2.*
 
 class UserRepository(
     private val networkConnectionInterceptor: NetworkConnectionInterceptor,
     private val api: ApiGateway,
     private val db: AppDatabase
 ) : SafeApiRequest() {
-
-    suspend fun authenticate(authRequest: AuthRequest) : AuthResponse {
-        return apiRequest { api.instance(networkConnectionInterceptor).authenticate(authRequest) }
+    suspend fun authenticate(loginRequest: LoginRequest) : LoginResponse {
+        return apiRequest { api.instance(networkConnectionInterceptor).authenticate(loginRequest) }
     }
-    suspend fun createUser(signUpRequest: SignUpRequest) : AuthResponse {
+    suspend fun createUser(signUpRequest: SignUpRequest) : SignUpResponse {
         return apiRequest { api.instance(networkConnectionInterceptor).signUp(signUpRequest) }
     }
-    suspend fun getUserApi(id: Int) : AuthResponse {
-        return apiRequest { api.instance(networkConnectionInterceptor).getUser(id) }
+    suspend fun getUserApi(token: String, id: Int) : UserResponse {
+        return apiRequest { api.instance(networkConnectionInterceptor).getUser(token, id) }
     }
-    suspend fun updateUserApi(id: Int, signUpRequest: SignUpRequest) : AuthResponse {
-        return apiRequest { api.instance(networkConnectionInterceptor).updateUserApi(id, signUpRequest) }
+    suspend fun updateUserApi(token: String, id: Int, updateRequest: UpdateRequest) : UserResponse {
+        return apiRequest { api.instance(networkConnectionInterceptor).updateUserApi(token, id, updateRequest) }
     }
     suspend fun insertUser(user: User) = db.userDao().insert(user)
     fun getUser() = db.userDao().getUser()

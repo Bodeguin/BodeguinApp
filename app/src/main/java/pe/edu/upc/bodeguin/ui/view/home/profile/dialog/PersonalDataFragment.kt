@@ -40,8 +40,9 @@ class PersonalDataFragment : DialogFragment(), UserListener {
         val factory = UserViewModelFactory(activity!!.application, repository)
         userViewModel = ViewModelProvider(this, factory).get(UserViewModel::class.java)
         val sharedPreferences = activity!!.getSharedPreferences("data", 0)
-        val id = sharedPreferences.getString("token", "")
-        userViewModel.cloneUser(id.toString())
+        val id = sharedPreferences.getString("id", "")
+        val token = sharedPreferences.getString("token", "")
+        userViewModel.cloneUser(id.toString(), token.toString())
         userViewModel.userListener = this
     }
 

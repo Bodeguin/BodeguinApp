@@ -1,6 +1,6 @@
 package pe.edu.upc.bodeguin.data.network.model.request
 
-class AuthRequest (
-    var correo : String,
+class LoginRequest (
+    var email : String,
     var password : String
 )

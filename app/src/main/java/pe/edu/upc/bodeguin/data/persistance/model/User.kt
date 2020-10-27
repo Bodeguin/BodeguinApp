@@ -8,22 +8,18 @@ import androidx.room.PrimaryKey
 class User (
     @PrimaryKey(autoGenerate = false)
     val id: Int?,
-    @ColumnInfo(name = "correo")
-    val correo: String?,
+    @ColumnInfo(name = "email")
+    val email: String?,
     @ColumnInfo(name ="password")
     val password: String?,
-    @ColumnInfo(name ="nombre")
-    val nombre:String?,
-    @ColumnInfo(name ="apellidoPaterno")
-    val apellidoPaterno:String?,
-    @ColumnInfo(name ="apellidoMaterno")
-    val apellidoMaterno:String?,
-    @ColumnInfo(name ="direccion")
-    val direccion: String?,
+    @ColumnInfo(name ="name")
+    val name:String?,
+    @ColumnInfo(name ="firstLastName")
+    val firstLastName:String?,
+    @ColumnInfo(name ="secondLastName")
+    val secondLastName:String?,
+    @ColumnInfo(name ="direction")
+    val direction: String?,
     @ColumnInfo(name ="dni")
-    val dni: String?,
-    @ColumnInfo(name ="enable")
-    val enable: Boolean?,
-    @ColumnInfo(name ="adm")
-    val adm: Boolean?
+    val dni: String?
 )

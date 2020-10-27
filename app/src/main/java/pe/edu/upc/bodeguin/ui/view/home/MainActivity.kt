@@ -27,7 +27,9 @@ import pe.edu.upc.bodeguin.ui.view.authentication.LoginActivity
 import pe.edu.upc.bodeguin.ui.view.home.home.HomeFragment
 import pe.edu.upc.bodeguin.ui.view.home.profile.ProfileFragment
 import pe.edu.upc.bodeguin.ui.view.home.profile.UserListener
+import pe.edu.upc.bodeguin.ui.view.home.search.SearchFragment
 import pe.edu.upc.bodeguin.ui.view.home.shooping.ShoppingFragment
+import pe.edu.upc.bodeguin.ui.view.home.store.MapsFragment
 import pe.edu.upc.bodeguin.ui.viewModel.profile.UserViewModel
 import pe.edu.upc.bodeguin.ui.viewModel.profile.UserViewModelFactory
 import pe.edu.upc.bodeguin.util.Coroutines
@@ -110,9 +112,11 @@ class MainActivity : AppCompatActivity(),
 
     private fun fragmentFor(item: MenuItem): Fragment {
         return when (item.itemId) {
+            R.id.iStore -> MapsFragment()
             R.id.iShopping -> ShoppingFragment()
             R.id.iHome -> HomeFragment()
             R.id.iProfile -> ProfileFragment()
+            R.id.iSearch -> SearchFragment()
             else -> HomeFragment()
         }
     }

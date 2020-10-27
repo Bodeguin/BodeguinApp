@@ -4,7 +4,7 @@ import android.app.Application
 import android.view.View
 import androidx.lifecycle.AndroidViewModel
 import pe.edu.upc.bodeguin.R
-import pe.edu.upc.bodeguin.data.network.model.request.AuthRequest
+import pe.edu.upc.bodeguin.data.network.model.request.LoginRequest
 import pe.edu.upc.bodeguin.data.network.model.request.SignUpRequest
 import pe.edu.upc.bodeguin.data.repository.UserRepository
 import pe.edu.upc.bodeguin.ui.view.authentication.AuthListener
@@ -24,10 +24,8 @@ class AuthViewModel(
     var name: String? = null
     var firstLastName: String? = null
     var secondLastName: String? = null
-    val dni: String = "-"
-    val direction: String = "-"
 
-    var mapper: Mapper = Mapper()
+    private var mapper: Mapper = Mapper()
     var authListener: AuthListener? = null
     var registerListener: RegisterListener? = null
 
@@ -36,16 +34,21 @@ class AuthViewModel(
         if(email.isNullOrEmpty() || password.isNullOrEmpty()) {
             authListener?.onFailure(getApplication<Application>().resources.getString(R.string.empty_credentials))
         } else {
-            val authenticateRequest = AuthRequest(email!!, password!!)
-
+            val loginRequest = LoginRequest(email!!, password!!)
             Coroutines.main {
                 try {
-                    val authResponse = repository.authenticate(authenticateRequest)
+                    val authResponse = repository.authenticate(loginRequest)
                     authResponse.let {
-                        val user = mapper.authResponseToModel(authResponse)
-                        repository.insertUser(user)
-                        authListener?.onSuccess(authResponse)
-                        //return@main
+                        if (authResponse.valid) {
+                            val user = mapper.loginResponseToModel(authResponse)
+                            repository.insertUser(user)
+                            authListener?.onSuccess(authResponse)
+                        } else  {
+                            when (authResponse.errorCode) {
+                                1 -> authListener?.onFailure("The user doesn't exist")
+                                else -> authListener?.onFailure("wrong password")
+                            }
+                        }
                     }
                     authListener?.onFailure(getApplication<Application>().resources.getString(R.string.wrong_credentials))
                 } catch (e: ApiException) {
@@ -64,17 +67,24 @@ class AuthViewModel(
         if(email.isNullOrEmpty() || password.isNullOrEmpty() || name.isNullOrEmpty() || firstLastName.isNullOrEmpty() || secondLastName.isNullOrEmpty()) {
             registerListener?.fail(getApplication<Application>().resources.getString(R.string.empty_inputs))
         } else {
-            val signUpRequest = SignUpRequest(0, email!!, password!!, name!!, firstLastName!!, secondLastName!!, direction, dni, enable = true, adm = false)
+            val signUpRequest = SignUpRequest(email!!, password!!, name!!, firstLastName!!, secondLastName!!)
             Coroutines.main {
                 try {
                     val signUpResponse = repository.createUser(signUpRequest)
                     signUpResponse.let {
-                        val authRequest = AuthRequest(signUpRequest.correo!!, signUpRequest.password!!)
-                        val authResponse = repository.authenticate(authRequest)
-                        authResponse.let {
-                            val user = mapper.authResponseToModel(authResponse)
-                            repository.insertUser(user)
-                            registerListener?.success(user)
+                        if (signUpResponse.valid) {
+                            val loginRequest = LoginRequest(signUpRequest.email!!, signUpRequest.password!!)
+                            val authResponse = repository.authenticate(loginRequest)
+                            authResponse.let {
+                                val user = mapper.loginResponseToModel(authResponse)
+                                repository.insertUser(user)
+                                registerListener?.success(user)
+                            }
+                        } else {
+                            when (signUpResponse.errorCode){
+                                3 -> registerListener?.fail("The user already exist")
+                                else -> registerListener?.fail(getApplication<Application>().resources.getString(R.string.login_error))
+                            }
                         }
                         registerListener?.fail(getApplication<Application>().resources.getString(R.string.login_error))
                     }

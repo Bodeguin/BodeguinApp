@@ -35,4 +35,10 @@
     <string name="personal_data">Datos personales</string>
     <string name="user_detail">Detalle de usuario</string>
     <string name="save">Guardar</string>
+    <string name="store">Tiendas</string>
+    <string name="search">Buscar</string>
+    <string name="store_name">Nombre de tienda</string>
+    <string name="store_description">Descripción de tienda</string>
+    <string name="store_direction">Dirección de tienda</string>
+    <string name="see_more">Ver más</string>
 </resources>
