@@ -8,13 +8,12 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 import pe.edu.upc.bodeguin.R
 import pe.edu.upc.bodeguin.data.network.api.ApiGateway
 import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
+import pe.edu.upc.bodeguin.data.network.model.response.LoginResponse
 import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
-import pe.edu.upc.bodeguin.data.persistance.model.User
 import pe.edu.upc.bodeguin.data.repository.UserRepository
 import pe.edu.upc.bodeguin.databinding.ActivityRegisterBinding
 import pe.edu.upc.bodeguin.ui.view.WelcomeActivity
@@ -53,9 +52,10 @@ class RegisterActivity : AppCompatActivity(), RegisterListener {
         binding.viewModel = authViewModel
     }
 
-    private fun saveData(id: String) {
+    private fun saveData(token: String, id: String) {
         val editor: SharedPreferences.Editor = getSharedPreferences("data", 0).edit()
-        editor.putString("token", id)
+        editor.putString("token", token)
+        editor.putString("id", id)
         editor.apply()
     }
 
@@ -73,12 +73,12 @@ class RegisterActivity : AppCompatActivity(), RegisterListener {
         lottieLoadingRegister.playAnimation()
     }
 
-    override fun success(user: User) {
+    override fun success(user: LoginResponse) {
         lottieLoadingRegister.hide()
         lottieLoadingRegister.cancelAnimation()
-        if (user.id == 0) rootLayout.snackBar(resources.getString(R.string.wrong_credentials))
+        if (!user.valid) clRegister.snackBar(resources.getString(R.string.wrong_credentials))
         else {
-            saveData(user.id.toString())
+            saveData(user.data.token.toString(), user.data.id.toString())
             startActivity(Intent(applicationContext, WelcomeActivity::class.java))
             finish()
         }

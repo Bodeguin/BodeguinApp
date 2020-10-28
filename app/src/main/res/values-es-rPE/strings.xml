@@ -41,4 +41,12 @@
     <string name="store_description">Descripción de tienda</string>
     <string name="store_direction">Dirección de tienda</string>
     <string name="see_more">Ver más</string>
+    <string name="history_purchase">Historial de compra</string>
+    <string name="exist_email">El correo ya se encuentra asociado a un usuario</string>
+    <string name="no_exist_user">El usuario no existe</string>
+    <string name="wrong_password">Contraseña incorrecta</string>
+    <string name="error_getstore">Tenemos problemas para obtener las tiendas cercanas a tu ubicación</string>
+    <string name="error_getproducts">Tenemos problemas para obtener los productos</string>
+    <string name="error_getcategories">Tenemos problemas para obtener las categorias</string>
+    <string name="categories">Categorias</string>
 </resources>

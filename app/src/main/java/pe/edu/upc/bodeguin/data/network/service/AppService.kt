@@ -20,4 +20,6 @@ interface AppService {
     suspend fun getStores(@Header("Authorization") token: String): Response<StoreResponse>
     @GET("api/products")
     suspend fun getProducts(@Header("Authorization") token: String, @Query("search") query: String): Response<ProductResponse>
+    @GET("api/categories")
+    suspend fun getCategories(@Header("Authorization") token: String): Response<CategoryResponse>
 }

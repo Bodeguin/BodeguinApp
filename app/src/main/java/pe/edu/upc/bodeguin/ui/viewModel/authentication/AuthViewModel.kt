@@ -45,8 +45,8 @@ class AuthViewModel(
                             authListener?.onSuccess(authResponse)
                         } else  {
                             when (authResponse.errorCode) {
-                                1 -> authListener?.onFailure("The user doesn't exist")
-                                else -> authListener?.onFailure("wrong password")
+                                1 -> authListener?.onFailure(getApplication<Application>().resources.getString(R.string.no_exist_user))
+                                else -> authListener?.onFailure(getApplication<Application>().resources.getString(R.string.wrong_password))
                             }
                         }
                     }
@@ -78,11 +78,11 @@ class AuthViewModel(
                             authResponse.let {
                                 val user = mapper.loginResponseToModel(authResponse)
                                 repository.insertUser(user)
-                                registerListener?.success(user)
+                                registerListener?.success(authResponse)
                             }
                         } else {
                             when (signUpResponse.errorCode){
-                                3 -> registerListener?.fail("The user already exist")
+                                3 -> registerListener?.fail(getApplication<Application>().resources.getString(R.string.exist_email))
                                 else -> registerListener?.fail(getApplication<Application>().resources.getString(R.string.login_error))
                             }
                         }

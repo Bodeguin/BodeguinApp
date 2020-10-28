@@ -42,5 +42,13 @@
     <string name="store_direction">Store Direction</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="see_more">See more</string>
+    <string name="history_purchase">Purchase history</string>
+    <string name="exist_email">The email is already associated with a user</string>
+    <string name="no_exist_user">The user doesn\'t exist</string>
+    <string name="wrong_password">Wrong password</string>
+    <string name="error_getstore">We have problems to get the stores near you</string>
+    <string name="error_getproducts">We have problems to get the products</string>
+    <string name="error_getcategories">We have problems to get the categories</string>
+    <string name="categories">Categories</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

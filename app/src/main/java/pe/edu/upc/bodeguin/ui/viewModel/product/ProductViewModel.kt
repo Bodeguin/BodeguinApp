@@ -5,9 +5,12 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import pe.edu.upc.bodeguin.R
 import pe.edu.upc.bodeguin.data.repository.ProductRepository
 import pe.edu.upc.bodeguin.ui.view.home.search.ProductListener
+import pe.edu.upc.bodeguin.util.ApiException
 import pe.edu.upc.bodeguin.util.Coroutines
+import pe.edu.upc.bodeguin.util.NoInternetException
 
 class ProductViewModel(
     application: Application?,
@@ -24,13 +27,19 @@ class ProductViewModel(
     fun getProducts(query: String) {
         productListener?.onStarted()
         Coroutines.main {
-            val products = repository!!.getProductApi(token, query)
-            if (products.valid) {
-                products.let{
-                    productListener?.onSuccess(products.data)
+            try {
+                val products = repository!!.getProductApi(token, query)
+                if (products.valid) {
+                    products.let{
+                        productListener?.onSuccess(products.data)
+                    }
+                } else {
+                    productListener?.onFailure(getApplication<Application>().resources.getString(R.string.error_getproducts))
                 }
-            } else {
-                productListener?.onFailure("Fallo al cargar productos")
+            } catch (e: ApiException) {
+                productListener?.onFailure(e.message!!)
+            } catch (e: NoInternetException) {
+                productListener?.onFailure(e.message!!)
             }
         }
     }

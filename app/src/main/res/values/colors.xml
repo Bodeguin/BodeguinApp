@@ -7,4 +7,5 @@
     <color name="colorLoading">#99FFFFFF</color>
     <color name="colorTitleDark">#1C1C1C</color>
     <color name="colorPrimaryButton">#FFD5D2</color>
+    <color name="colorTextCategory">#81000000</color>
 </resources>
