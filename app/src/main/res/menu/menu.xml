@@ -1,35 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+<menu
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/iStore"
         android:color="@color/colorPrimaryDark"
+        android:enabled="true"
         android:icon="@drawable/ic_place"
         android:title="@string/store"
-        android:state_checked="true" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/iSearch"
         android:color="@color/colorPrimaryDark"
+        android:enabled="true"
         android:icon="@drawable/ic_search"
         android:title="@string/search"
-        android:state_checked="true" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/iHome"
         android:color="@color/colorPrimaryDark"
+        android:enabled="true"
         android:icon="@drawable/ic_store"
-        android:state_checked="true"
-        android:title="@string/home" />
+        android:title="@string/home"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/iShopping"
         android:color="@color/colorPrimaryDark"
+        android:enabled="true"
         android:icon="@drawable/shopping_cart"
-        android:state_checked="true"
-        android:title="@string/shopping_cart" />
+        android:title="@string/shopping_cart"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/iProfile"
+        android:color="@color/colorPrimaryDark"
+        android:enabled="true"
         android:icon="@drawable/account_circle"
         android:title="@string/profile"
-        android:state_checked="true"
-        android:color="@color/colorPrimaryDark"/>
+        app:showAsAction="ifRoom" />
 </menu>

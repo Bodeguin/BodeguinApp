@@ -40,7 +40,7 @@
     <string name="store_name">Nombre de tienda</string>
     <string name="store_description">Descripción de tienda</string>
     <string name="store_direction">Dirección de tienda</string>
-    <string name="see_more">Ver más</string>
+    <string name="see_more">Ver tiendas</string>
     <string name="history_purchase">Historial de compra</string>
     <string name="exist_email">El correo ya se encuentra asociado a un usuario</string>
     <string name="no_exist_user">El usuario no existe</string>
@@ -49,4 +49,9 @@
     <string name="error_getproducts">Tenemos problemas para obtener los productos</string>
     <string name="error_getcategories">Tenemos problemas para obtener las categorias</string>
     <string name="categories">Categorias</string>
+    <string name="products">Productos</string>
+    <string name="currency">S/</string>
+    <string name="stock">Stock:</string>
+    <string name="add_cart">AGREGAR AL CARRITO</string>
+    <string name="good_price">Buen precio de</string>
 </resources>

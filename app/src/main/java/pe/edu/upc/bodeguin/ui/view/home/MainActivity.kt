@@ -114,7 +114,6 @@ class MainActivity : AppCompatActivity(),
         return when (item.itemId) {
             R.id.iStore -> MapsFragment()
             R.id.iShopping -> ShoppingFragment()
-            R.id.iHome -> HomeFragment()
             R.id.iProfile -> ProfileFragment()
             R.id.iSearch -> SearchFragment()
             else -> HomeFragment()

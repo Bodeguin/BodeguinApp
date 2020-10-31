@@ -5,10 +5,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionMenuTextColor">@color/colorPureBlack</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="colorAccent">@color/colorTitles</item>
+        <item name="android:textColor">@color/colorPureBlack</item>
     </style>
 
     <style name="FullScreeDialogTheme" parent="Theme.MaterialComponents.Light.DialogWhenLarge">

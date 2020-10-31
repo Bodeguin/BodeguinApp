@@ -22,4 +22,8 @@ interface AppService {
     suspend fun getProducts(@Header("Authorization") token: String, @Query("search") query: String): Response<ProductResponse>
     @GET("api/categories")
     suspend fun getCategories(@Header("Authorization") token: String): Response<CategoryResponse>
+    @GET("api/categories/{id}/products")
+    suspend fun getProductsByCategory(@Header("Authorization") token: String, @Path("id") id: Int): Response<ProductResponse>
+    @GET("api/products/{id}/stores")
+    suspend fun getStoresByProduct(@Header("Authorization") token: String, @Path("id") id: Int): Response<ProductStoreResponse>
 }

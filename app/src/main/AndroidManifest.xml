@@ -2,13 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="pe.edu.upc.bodeguin">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the "MyLocation" functionality.
     -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -23,6 +22,20 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup"
         tools:targetApi="q">
+        <activity
+            android:name=".ui.view.home.home.products.stores.ProductStoreActivity"
+            android:parentActivityName=".ui.view.home.home.products.ProductsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.view.home.home.products.ProductsActivity" />
+        </activity>
+        <activity
+            android:name=".ui.view.home.home.products.ProductsActivity"
+            android:parentActivityName=".ui.view.home.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.view.home.MainActivity" />
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

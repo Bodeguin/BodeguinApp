@@ -41,7 +41,7 @@
     <string name="store_description">Store Description</string>
     <string name="store_direction">Store Direction</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="see_more">See more</string>
+    <string name="see_more">See stores</string>
     <string name="history_purchase">Purchase history</string>
     <string name="exist_email">The email is already associated with a user</string>
     <string name="no_exist_user">The user doesn\'t exist</string>
@@ -50,5 +50,11 @@
     <string name="error_getproducts">We have problems to get the products</string>
     <string name="error_getcategories">We have problems to get the categories</string>
     <string name="categories">Categories</string>
+    <string name="products">Products</string>
+    <string name="currency">$</string>
+    <string name="stock">Stock:</string>
+    <string name="add_cart">ADD TO CART</string>
+    <string name="good_price">Good price of</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

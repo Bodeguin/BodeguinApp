@@ -70,13 +70,14 @@ class SearchFragment : Fragment(), ProductListener {
                 return true
             }
         })
-        rvSearchProducts.layoutManager = LinearLayoutManager(context)
+        val manager = GridLayoutManager(activity, 2)
+        rvSearchProducts.layoutManager = manager
     }
 
     override fun onSuccess(products: List<ProductData>) {
         activity!!.lottieLoadingMain.hide()
         activity!!.lottieLoadingMain.cancelAnimation()
-        productAdapter = ProductAdapter(products)
+        productAdapter = ProductAdapter(products, context!!)
         rvSearchProducts.adapter = productAdapter
     }
 

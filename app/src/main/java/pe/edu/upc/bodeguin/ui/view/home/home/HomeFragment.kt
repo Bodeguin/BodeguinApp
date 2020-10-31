@@ -60,7 +60,7 @@ class HomeFragment : Fragment(), HomeListener {
     override fun onSuccess(categories: List<CategoryData>) {
         activity!!.lottieLoadingMain.hide()
         activity!!.lottieLoadingMain.cancelAnimation()
-        categoryAdapter = CategoryAdapter(categories)
+        categoryAdapter = CategoryAdapter(categories, context!!)
         rvCategories.adapter = categoryAdapter
         rvCategories.adapter!!.notifyDataSetChanged()
     }
