@@ -45,10 +45,6 @@ class CategoryAdapter(
             editor.putString("urlCategory", url)
             editor.apply()
 
-            //intent.putExtra("idCategory", id)
-            //intent.putExtra("nameCategory", name)
-            //intent.putExtra("urlCategory", url)
-
             context.startActivity(intent)
         }
     }

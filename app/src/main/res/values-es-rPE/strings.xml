@@ -54,4 +54,8 @@
     <string name="stock">Stock:</string>
     <string name="add_cart">AGREGAR AL CARRITO</string>
     <string name="good_price">Buen precio de</string>
+    <string name="x">x</string>
+    <string name="total">Total</string>
+    <string name="no_price">0.00</string>
+    <string name="buy_now">Comprar</string>
 </resources>

@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:elevation="5dp"
+        app:cardElevation="5dp"
         app:cardCornerRadius="10dp"
         android:backgroundTint="@color/colorCardSecondary">
 

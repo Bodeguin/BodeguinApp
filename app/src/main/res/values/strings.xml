@@ -34,13 +34,11 @@
     <string name="personal_data">Personal information</string>
     <string name="user_detail">User detail</string>
     <string name="save">Save</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="store">Stores</string>
     <string name="search">Search</string>
     <string name="store_name">Store Name</string>
     <string name="store_description">Store Description</string>
     <string name="store_direction">Store Direction</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="see_more">See stores</string>
     <string name="history_purchase">Purchase history</string>
     <string name="exist_email">The email is already associated with a user</string>
@@ -55,6 +53,10 @@
     <string name="stock">Stock:</string>
     <string name="add_cart">ADD TO CART</string>
     <string name="good_price">Good price of</string>
+    <string name="x">x</string>
+    <string name="total">Total</string>
+    <string name="no_price">0.00</string>
+    <string name="buy_now">Buy Now</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

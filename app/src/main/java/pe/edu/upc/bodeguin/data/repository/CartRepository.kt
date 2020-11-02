@@ -1,0 +1,24 @@
+package pe.edu.upc.bodeguin.data.repository
+
+import androidx.lifecycle.LiveData
+import pe.edu.upc.bodeguin.data.network.api.ApiGateway
+import pe.edu.upc.bodeguin.data.network.api.SafeApiRequest
+import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
+import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
+import pe.edu.upc.bodeguin.data.persistance.model.Cart
+
+class CartRepository(
+    private val networkConnectionInterceptor: NetworkConnectionInterceptor,
+    private val api: ApiGateway,
+    private val db: AppDatabase
+) : SafeApiRequest() {
+    var carts: LiveData<List<Cart>> = db.cartDao().getShoppingCart()
+    var totalPriceCart: LiveData<Double> = db.cartDao().getTotalPrice()
+    suspend fun insert(cart: Cart) = db.cartDao().insert(cart)
+    fun getShoppingCart() = db.cartDao().getShoppingCart()
+    fun getTotalPrice() = db.cartDao().getTotalPrice()
+    fun getTotalItemsCarts() = db.cartDao().getTotalItemsCarts()
+    fun getById(id: Int) = db.cartDao().getById(id)
+    fun delete(cart: Cart) = db.cartDao().delete(cart)
+    fun deleteAll() = db.cartDao().deleteAll()
+}

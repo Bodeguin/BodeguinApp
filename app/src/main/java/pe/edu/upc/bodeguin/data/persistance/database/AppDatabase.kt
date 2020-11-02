@@ -4,12 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import pe.edu.upc.bodeguin.data.persistance.dao.CartDao
 import pe.edu.upc.bodeguin.data.persistance.dao.UserDao
+import pe.edu.upc.bodeguin.data.persistance.model.Cart
 import pe.edu.upc.bodeguin.data.persistance.model.User
 
-@Database(entities = [User::class], version = 2, exportSchema = false)
+@Database(entities = [User::class, Cart::class], version = 1, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun userDao(): UserDao
+    abstract fun cartDao(): CartDao
 
     companion object {
         @Volatile
@@ -19,6 +22,7 @@ abstract class AppDatabase: RoomDatabase() {
             if (INSTANCE == null) {
                 INSTANCE = Room
                     .databaseBuilder(context, AppDatabase::class.java, "BodeguinDatabase")
+                    .fallbackToDestructiveMigration()
                     .build()
             }
             return INSTANCE as AppDatabase

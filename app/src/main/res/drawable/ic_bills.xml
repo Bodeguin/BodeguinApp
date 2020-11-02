@@ -1,0 +1,16 @@
+<vector android:height="18dp" android:viewportHeight="75"
+    android:viewportWidth="75" android:width="18dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#000" android:name="Rectángulo 2" android:pathData="m68 19v30h-57v-30zm-64 -7v44h71v-44z"/>
+    <path android:fillColor="#000" android:name="Elipse 1" android:pathData="m12 12c4.42 0 8 3.58 8 8c0 4.42 -3.58 8 -8 8c-4.42 0 -8 -3.58 -8 -8c0 -4.42 3.58 -8 8 -8z"/>
+    <path android:fillColor="#000" android:name="Elipse 1" android:pathData="m12 19c0.55 0 1 0.45 1 1c0 0.55 -0.45 1 -1 1c-0.55 0 -1 -0.45 -1 -1c0 -0.55 0.45 -1 1 -1zm0 -7c-4.42 0 -8 3.58 -8 8c0 4.42 3.58 8 8 8c4.42 0 8 -3.58 8 -8c0 -4.42 -3.58 -8 -8 -8z"/>
+    <path android:fillColor="#000" android:name="Elipse 1 copia" android:pathData="m67 12c4.42 0 8 3.58 8 8c0 4.42 -3.58 8 -8 8c-4.42 0 -8 -3.58 -8 -8c0 -4.42 3.58 -8 8 -8z"/>
+    <path android:fillColor="#000" android:name="Elipse 1 copia" android:pathData="m67 19c0.55 0 1 0.45 1 1c0 0.55 -0.45 1 -1 1c-0.55 0 -1 -0.45 -1 -1c0 -0.55 0.45 -1 1 -1zm0 -7c-4.42 0 -8 3.58 -8 8c0 4.42 3.58 8 8 8c4.42 0 8 -3.58 8 -8c0 -4.42 -3.58 -8 -8 -8z"/>
+    <path android:fillColor="#000" android:name="Elipse 1 copia 2" android:pathData="m12 40c4.42 0 8 3.58 8 8c0 4.42 -3.58 8 -8 8c-4.42 0 -8 -3.58 -8 -8c0 -4.42 3.58 -8 8 -8z"/>
+    <path android:fillColor="#000" android:name="Elipse 1 copia 2" android:pathData="m12 47c0.55 0 1 0.45 1 1c0 0.55 -0.45 1 -1 1c-0.55 0 -1 -0.45 -1 -1c0 -0.55 0.45 -1 1 -1zm0 -7c-4.42 0 -8 3.58 -8 8c0 4.42 3.58 8 8 8c4.42 0 8 -3.58 8 -8c0 -4.42 -3.58 -8 -8 -8z"/>
+    <path android:fillColor="#000" android:name="Elipse 2" android:pathData="m40 25c5.52 0 10 4.48 10 10c0 5.52 -4.48 10 -10 10c-5.52 0 -10 -4.48 -10 -10c0 -5.52 4.48 -10 10 -10z"/>
+    <path android:fillColor="#000" android:name="Elipse 2" android:pathData="m40 32c1.66 0 3 1.34 3 3c0 1.66 -1.34 3 -3 3c-1.66 0 -3 -1.34 -3 -3c0 -1.66 1.34 -3 3 -3zm0 -7c-5.52 0 -10 4.48 -10 10c0 5.52 4.48 10 10 10c5.52 0 10 -4.48 10 -10c0 -5.52 -4.48 -10 -10 -10z"/>
+    <path android:fillColor="#000" android:name="Elipse 1 copia 3" android:pathData="m67 40c4.42 0 8 3.58 8 8c0 4.42 -3.58 8 -8 8c-4.42 0 -8 -3.58 -8 -8c0 -4.42 3.58 -8 8 -8z"/>
+    <path android:fillColor="#000" android:name="Elipse 1 copia 3" android:pathData="m67 47c0.55 0 1 0.45 1 1c0 0.55 -0.45 1 -1 1c-0.55 0 -1 -0.45 -1 -1c0 -0.55 0.45 -1 1 -1zm0 -7c-4.42 0 -8 3.58 -8 8c0 4.42 3.58 8 8 8c4.42 0 8 -3.58 8 -8c0 -4.42 -3.58 -8 -8 -8z"/>
+    <path android:fillColor="#000" android:name="Rectángulo 5" android:pathData="m-1 17v44h3v-44z"/>
+    <path android:fillColor="#000" android:name="Rectángulo 4" android:pathData="m-2 58v3h73v-3z"/>
+</vector>

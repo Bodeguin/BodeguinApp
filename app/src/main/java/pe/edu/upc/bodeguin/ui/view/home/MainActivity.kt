@@ -22,6 +22,7 @@ import pe.edu.upc.bodeguin.data.network.api.ApiGateway
 import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
 import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
 import pe.edu.upc.bodeguin.data.persistance.model.User
+import pe.edu.upc.bodeguin.data.repository.CartRepository
 import pe.edu.upc.bodeguin.data.repository.UserRepository
 import pe.edu.upc.bodeguin.ui.view.authentication.LoginActivity
 import pe.edu.upc.bodeguin.ui.view.home.home.HomeFragment
@@ -30,6 +31,8 @@ import pe.edu.upc.bodeguin.ui.view.home.profile.UserListener
 import pe.edu.upc.bodeguin.ui.view.home.search.SearchFragment
 import pe.edu.upc.bodeguin.ui.view.home.shooping.ShoppingFragment
 import pe.edu.upc.bodeguin.ui.view.home.store.MapsFragment
+import pe.edu.upc.bodeguin.ui.viewModel.cart.CartViewModel
+import pe.edu.upc.bodeguin.ui.viewModel.cart.CartViewModelFactory
 import pe.edu.upc.bodeguin.ui.viewModel.profile.UserViewModel
 import pe.edu.upc.bodeguin.ui.viewModel.profile.UserViewModelFactory
 import pe.edu.upc.bodeguin.util.Coroutines
@@ -42,6 +45,7 @@ class MainActivity : AppCompatActivity(),
     private var notificationId = 0
 
     private lateinit var userViewModel: UserViewModel
+    private lateinit var cartViewModel: CartViewModel
 
     companion object {
         const val CHANNEL_ID = "pe.edu.upc.bodega.NOTIFICATION"
@@ -54,8 +58,11 @@ class MainActivity : AppCompatActivity(),
         val networkConnectionInterceptor = NetworkConnectionInterceptor(this)
         val api = ApiGateway
         val db = AppDatabase.getInstance(this)
+        val cartRepository = CartRepository(networkConnectionInterceptor, api, db)
         val repository = UserRepository(networkConnectionInterceptor, api, db)
+        val cartFactory = CartViewModelFactory(application, cartRepository)
         val factory = UserViewModelFactory(application, repository)
+        cartViewModel = ViewModelProvider(this, cartFactory).get(CartViewModel::class.java)
         userViewModel = ViewModelProvider(this, factory).get(UserViewModel::class.java)
         userViewModel.userListener = this
 
@@ -86,6 +93,7 @@ class MainActivity : AppCompatActivity(),
         when (item.itemId) {
             R.id.btLogout -> {
                 Coroutines.main {
+                    cartViewModel.deleteAll()
                     userViewModel.deleteUser()
                 }
                 return true
