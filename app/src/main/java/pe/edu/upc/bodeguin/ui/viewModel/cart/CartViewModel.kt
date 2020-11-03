@@ -7,6 +7,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import pe.edu.upc.bodeguin.data.network.model.request.DetailRequest
+import pe.edu.upc.bodeguin.data.network.model.request.VoucherRequest
 import pe.edu.upc.bodeguin.data.persistance.model.Cart
 import pe.edu.upc.bodeguin.data.repository.CartRepository
 import pe.edu.upc.bodeguin.ui.view.home.shooping.CartListener
@@ -19,7 +21,7 @@ class CartViewModel(
 ) : AndroidViewModel(application!!) {
 
     var token: String = "Bearer "
-    private var cartListener: CartListener? = null
+    var cartListener: CartListener? = null
     var totalPriceCart: LiveData<Double> = repository.totalPriceCart
     var carts: LiveData<List<Cart>> = repository.carts
 
@@ -48,10 +50,21 @@ class CartViewModel(
         repository.deleteAll()
     }
 
-    fun buyShop() {
+    fun buyShop(userId: Int, paymentId: Int) = viewModelScope.launch(Dispatchers.IO) {
+        val cartsDetail = repository.getShoppingCart()
+        val voucherRequest = VoucherRequest(paymentId, userId, emptyList())
+        for (item in cartsDetail) {
+            val detailRequest = DetailRequest(item.price!!.toDouble(), item.quantity!!, item.id!!)
+            val result = voucherRequest.detail.plusElement(detailRequest)
+            voucherRequest.detail = result
+        }
         Coroutines.main {
-            for (item in carts.value!!) {
-                Log.d("data", "data: " + item.id)
+            cartListener?.onStarted()
+            val response = repository.insertShopBuy(token, voucherRequest)
+            if(response.valid){
+                cartListener?.onSuccessBuy()
+            } else {
+                cartListener?.onFailure(response.data)
             }
         }
     }

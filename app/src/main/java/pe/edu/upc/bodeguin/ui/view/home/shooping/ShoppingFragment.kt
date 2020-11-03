@@ -1,5 +1,6 @@
 package pe.edu.upc.bodeguin.ui.view.home.shooping
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
@@ -9,29 +10,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wajahatkarim3.roomexplorer.RoomExplorer
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_payment.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_shopping.*
 import pe.edu.upc.bodeguin.R
 import pe.edu.upc.bodeguin.data.network.api.ApiGateway
 import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
 import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
-import pe.edu.upc.bodeguin.data.persistance.model.Cart
 import pe.edu.upc.bodeguin.data.repository.CartRepository
-import pe.edu.upc.bodeguin.ui.view.home.shooping.dialog.PaymentFragment
+import pe.edu.upc.bodeguin.ui.view.home.MainActivity
+import pe.edu.upc.bodeguin.ui.view.home.shooping.dialog.PaymentActivity
 import pe.edu.upc.bodeguin.ui.viewModel.cart.CartViewModel
 import pe.edu.upc.bodeguin.ui.viewModel.cart.CartViewModelFactory
 import pe.edu.upc.bodeguin.util.ItemTouchHelperCallback
-import pe.edu.upc.bodeguin.util.hide
-import pe.edu.upc.bodeguin.util.show
 import pe.edu.upc.bodeguin.util.snackBar
 
 class ShoppingFragment : Fragment() {
@@ -99,8 +97,12 @@ class ShoppingFragment : Fragment() {
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(rvCartProducts)
         bBuyNow.setOnClickListener {
-            cartViewModel.buyShop()
-            PaymentFragment().show(activity!!.supportFragmentManager, "tag232")
+            val cartSize = cartViewModel.carts.value!!.size
+            if (cartSize <= 0) {
+                activity!!.clShoppingCart.snackBar("Without items in the shopping cart")
+            } else {
+                startActivity(Intent(context, PaymentActivity::class.java))
+            }
         }
     }
 }

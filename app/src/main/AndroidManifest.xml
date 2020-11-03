@@ -64,6 +64,10 @@
             android:name=".ui.view.home.MainActivity"
             android:windowSoftInputMode="adjustPan" />
 
+        <activity
+            android:name=".ui.view.home.shooping.dialog.PaymentActivity"
+            android:windowSoftInputMode="adjustPan"/>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

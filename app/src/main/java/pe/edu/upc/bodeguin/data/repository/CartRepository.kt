@@ -17,7 +17,7 @@ class CartRepository(
     var carts: LiveData<List<Cart>> = db.cartDao().getShoppingCart()
     var totalPriceCart: LiveData<Double> = db.cartDao().getTotalPrice()
     suspend fun insert(cart: Cart) = db.cartDao().insert(cart)
-    fun getShoppingCart() = db.cartDao().getShoppingCart()
+    fun getShoppingCart() = db.cartDao().getCarts()
     fun getTotalPrice() = db.cartDao().getTotalPrice()
     fun getTotalItemsCarts() = db.cartDao().getTotalItemsCarts()
     fun getById(id: Int) = db.cartDao().getById(id)

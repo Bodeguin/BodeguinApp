@@ -13,6 +13,9 @@ interface CartDao {
     @Query("select * from Cart order by product")
     fun getShoppingCart(): LiveData<List<Cart>>
 
+    @Query("select * from Cart order by product")
+    fun getCarts(): List<Cart>
+
     @Query("select Count(*) from Cart")
     fun getTotalItemsCarts(): Int
 

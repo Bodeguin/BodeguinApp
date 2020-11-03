@@ -82,6 +82,11 @@ class MainActivity : AppCompatActivity(),
 
         supportActionBar?.title = resources.getString(R.string.app_name)
         supportActionBar?.setIcon(resources.getDrawable(R.drawable.ic_logo, null))
+
+        val result = intent.getBooleanExtra("SUCCESS_PAY", false)
+        if (result) {
+            flContent.snackBar("Success")
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
