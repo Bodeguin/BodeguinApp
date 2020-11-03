@@ -3,6 +3,7 @@ package pe.edu.upc.bodeguin.data.network.service
 import pe.edu.upc.bodeguin.data.network.model.request.LoginRequest
 import pe.edu.upc.bodeguin.data.network.model.request.SignUpRequest
 import pe.edu.upc.bodeguin.data.network.model.request.UpdateRequest
+import pe.edu.upc.bodeguin.data.network.model.request.VoucherRequest
 import pe.edu.upc.bodeguin.data.network.model.response.*
 import retrofit2.Response
 import retrofit2.http.*
@@ -26,4 +27,6 @@ interface AppService {
     suspend fun getProductsByCategory(@Header("Authorization") token: String, @Path("id") id: Int): Response<ProductResponse>
     @GET("api/products/{id}/stores")
     suspend fun getStoresByProduct(@Header("Authorization") token: String, @Path("id") id: Int): Response<ProductStoreResponse>
+    @POST("api/shops")
+    suspend fun buyShopCart(@Header("Authorization") token: String, @Body voucherRequest: VoucherRequest): Response<ShopCartResponse>
 }

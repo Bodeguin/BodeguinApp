@@ -58,4 +58,8 @@
     <string name="total">Total</string>
     <string name="no_price">0.00</string>
     <string name="buy_now">Comprar</string>
+    <string name="payment">Método de pago</string>
+    <string name="cash">Efectivo</string>
+    <string name="credit_card">Tarjeta de crédito</string>
+    <string name="buy">Comprar</string>
 </resources>

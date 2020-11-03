@@ -12,9 +12,6 @@ import pe.edu.upc.bodeguin.data.repository.CartRepository
 import pe.edu.upc.bodeguin.ui.view.home.shooping.CartListener
 import pe.edu.upc.bodeguin.util.ApiException
 import pe.edu.upc.bodeguin.util.Coroutines
-import pe.edu.upc.bodeguin.util.NoInternetException
-import kotlin.jvm.internal.Ref
-import kotlin.math.round
 
 class CartViewModel(
     application: Application?,
@@ -51,10 +48,10 @@ class CartViewModel(
         repository.deleteAll()
     }
 
-    fun buyCart() {
+    fun buyShop() {
         Coroutines.main {
             for (item in carts.value!!) {
-                Log.d("data", "dato: " + item.id)
+                Log.d("data", "data: " + item.id)
             }
         }
     }

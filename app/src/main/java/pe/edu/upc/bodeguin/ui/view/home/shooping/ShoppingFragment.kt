@@ -26,6 +26,7 @@ import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
 import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
 import pe.edu.upc.bodeguin.data.persistance.model.Cart
 import pe.edu.upc.bodeguin.data.repository.CartRepository
+import pe.edu.upc.bodeguin.ui.view.home.shooping.dialog.PaymentFragment
 import pe.edu.upc.bodeguin.ui.viewModel.cart.CartViewModel
 import pe.edu.upc.bodeguin.ui.viewModel.cart.CartViewModelFactory
 import pe.edu.upc.bodeguin.util.ItemTouchHelperCallback
@@ -54,7 +55,7 @@ class ShoppingFragment : Fragment() {
         val token = sharedPreferences.getString("token", "")
 
         cartViewModel.setToken(token.toString())
-        cartViewModel.getCart()
+        //cartViewModel.getCart()
     }
 
     override fun onCreateView(
@@ -97,9 +98,9 @@ class ShoppingFragment : Fragment() {
 
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(rvCartProducts)
-
         bBuyNow.setOnClickListener {
-            cartViewModel.buyCart()
+            cartViewModel.buyShop()
+            PaymentFragment().show(activity!!.supportFragmentManager, "tag232")
         }
     }
 }
