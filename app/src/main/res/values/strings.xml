@@ -62,4 +62,8 @@
     <string name="cash">Cash</string>
     <string name="credit_card">Credit card</string>
     <string name="buy">Buy</string>
+    <string name="add_product_cart">The product was added to the shopping cart</string>
+    <string name="register_sale">Registered sale</string>
+    <string name="out_stock">The product is out of stock</string>
+    <string name="no_items_cart">There are no products in the cart</string>
 </resources>

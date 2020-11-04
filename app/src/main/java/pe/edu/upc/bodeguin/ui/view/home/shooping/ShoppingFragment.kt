@@ -69,6 +69,7 @@ class ShoppingFragment : Fragment() {
         bTest.setOnClickListener {
             RoomExplorer.show(context, AppDatabase::class.java, "BodeguinDatabase")
         }
+
         val totalPrice = view.findViewById<TextView>(R.id.tvTotalPrice)
         totalPrice.text = resources.getString(R.string.no_price)
         cartAdapter = CartAdapter(context!!)
@@ -99,7 +100,7 @@ class ShoppingFragment : Fragment() {
         bBuyNow.setOnClickListener {
             val cartSize = cartViewModel.carts.value!!.size
             if (cartSize <= 0) {
-                activity!!.clShoppingCart.snackBar("Without items in the shopping cart")
+                activity!!.clShoppingCart.snackBar(resources.getString(R.string.no_items_cart))
             } else {
                 startActivity(Intent(context, PaymentActivity::class.java))
             }

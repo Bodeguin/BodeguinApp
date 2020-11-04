@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import pe.edu.upc.bodeguin.R
 import pe.edu.upc.bodeguin.data.network.model.request.DetailRequest
 import pe.edu.upc.bodeguin.data.network.model.request.VoucherRequest
 import pe.edu.upc.bodeguin.data.persistance.model.Cart
@@ -64,7 +65,7 @@ class CartViewModel(
             if(response.valid){
                 cartListener?.onSuccessBuy()
             } else {
-                cartListener?.onFailure(response.data)
+                cartListener?.onFailure(getApplication<Application>().resources.getString(R.string.out_stock) + ": " + response.data)
             }
         }
     }

@@ -62,4 +62,8 @@
     <string name="cash">Efectivo</string>
     <string name="credit_card">Tarjeta de crédito</string>
     <string name="buy">Comprar</string>
+    <string name="add_product_cart">El producto fue agregado al carrito de compras</string>
+    <string name="register_sale">Venta registrada</string>
+    <string name="out_stock">El producto se encuentra fuera de stock</string>
+    <string name="no_items_cart">No hay productos en el carrito de compras</string>
 </resources>

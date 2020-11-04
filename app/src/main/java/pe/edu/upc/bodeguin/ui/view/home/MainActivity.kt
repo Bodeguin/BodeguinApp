@@ -9,8 +9,10 @@ import android.content.SharedPreferences
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -46,6 +48,7 @@ class MainActivity : AppCompatActivity(),
 
     private lateinit var userViewModel: UserViewModel
     private lateinit var cartViewModel: CartViewModel
+    private var result: Boolean = false
 
     companion object {
         const val CHANNEL_ID = "pe.edu.upc.bodega.NOTIFICATION"
@@ -83,10 +86,14 @@ class MainActivity : AppCompatActivity(),
         supportActionBar?.title = resources.getString(R.string.app_name)
         supportActionBar?.setIcon(resources.getDrawable(R.drawable.ic_logo, null))
 
-        val result = intent.getBooleanExtra("SUCCESS_PAY", false)
+        result = intent.getBooleanExtra("SUCCESS_PAY", false)
+    }
+
+    override fun onCreateView(parent: View?, name: String, context: Context, attrs: AttributeSet): View? {
         if (result) {
-            flContent.snackBar("Success")
+            flContent.snackBar(resources.getString(R.string.register_sale))
         }
+        return super.onCreateView(parent, name, context, attrs)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

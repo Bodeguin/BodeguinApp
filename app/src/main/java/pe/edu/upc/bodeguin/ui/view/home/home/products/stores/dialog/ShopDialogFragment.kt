@@ -11,6 +11,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_product_store.*
 import kotlinx.android.synthetic.main.fragment_shop_dialog.*
 import pe.edu.upc.bodeguin.R
 import pe.edu.upc.bodeguin.data.network.api.ApiGateway
@@ -20,6 +21,7 @@ import pe.edu.upc.bodeguin.data.persistance.model.Cart
 import pe.edu.upc.bodeguin.data.repository.CartRepository
 import pe.edu.upc.bodeguin.ui.viewModel.cart.CartViewModel
 import pe.edu.upc.bodeguin.ui.viewModel.cart.CartViewModelFactory
+import pe.edu.upc.bodeguin.util.snackBar
 
 class ShopDialogFragment : DialogFragment() {
 
@@ -76,6 +78,7 @@ class ShopDialogFragment : DialogFragment() {
         }
         addCart.setOnClickListener {
             saveProduct()
+            activity!!.clProductStore.snackBar(resources.getString(R.string.add_product_cart))
             dismiss()
         }
         bShare.setOnClickListener {
