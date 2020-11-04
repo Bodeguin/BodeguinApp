@@ -34,21 +34,6 @@
         app:layout_constraintVertical_bias="1.0">
     </FrameLayout>
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieLoadingMain"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/flContent"
-        app:layout_constraintEnd_toEndOf="@+id/flContent"
-        app:layout_constraintStart_toStartOf="@+id/flContent"
-        app:layout_constraintTop_toBottomOf="@+id/appBar"
-        android:background="@color/colorLoading"
-        app:lottie_loop="true"
-        app:lottie_imageAssetsFolder="assets"
-        app:lottie_fileName="loading_fruit.json"
-        android:clickable="true"
-        android:visibility="gone"/>
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnHome"
         android:layout_width="match_parent"
@@ -58,4 +43,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu"
         style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieLoadingMain"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorLoading"
+        android:clickable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBar"
+        android:elevation="8dp"
+        app:lottie_fileName="loading_fruit.json"
+        app:lottie_imageAssetsFolder="assets"
+        app:lottie_loop="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>
