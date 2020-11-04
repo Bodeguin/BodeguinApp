@@ -24,7 +24,7 @@ class CategoryViewModel(
         token = "Bearer $userToken"
     }
 
-    fun getCategories() {
+    fun getCategories(token: String) {
         homeListener?.onStarted()
         Coroutines.main {
             try {

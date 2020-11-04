@@ -27,6 +27,7 @@ class HomeFragment : Fragment(), HomeListener {
 
     private lateinit var categoryViewModel: CategoryViewModel
     private lateinit var categoryAdapter: CategoryAdapter
+    private lateinit var token: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,12 +40,13 @@ class HomeFragment : Fragment(), HomeListener {
         categoryViewModel = ViewModelProvider(this, factory).get(CategoryViewModel::class.java)
 
         val sharedPreferences = activity!!.getSharedPreferences("data", 0)
-        val token = sharedPreferences.getString("token", "")
+        val userToken = sharedPreferences.getString("token", "")
+        token = "Bearer $userToken"
 
-        categoryViewModel.setToken(token.toString())
+        categoryViewModel.setToken(userToken.toString())
         categoryViewModel.homeListener = this
 
-        categoryViewModel.getCategories()
+        categoryViewModel.getCategories(token)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

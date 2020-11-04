@@ -87,12 +87,12 @@ class MainActivity : AppCompatActivity(),
         supportActionBar?.setIcon(resources.getDrawable(R.drawable.ic_logo, null))
 
         result = intent.getBooleanExtra("SUCCESS_PAY", false)
-    }
-
-    override fun onCreateView(parent: View?, name: String, context: Context, attrs: AttributeSet): View? {
         if (result) {
             flContent.snackBar(resources.getString(R.string.register_sale))
         }
+    }
+
+    override fun onCreateView(parent: View?, name: String, context: Context, attrs: AttributeSet): View? {
         return super.onCreateView(parent, name, context, attrs)
     }
 
