@@ -58,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:text="@string/save"
+                android:fontFamily="@font/roboto_medium"
                 android:onClick="@{viewModel::updateUserDirection}"
                 android:textColor="@color/colorTitles"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -90,6 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
+                    android:fontFamily="@font/roboto"
                     android:hint="@string/direction"
                     android:text="@={viewModel.direction}"/>
             </com.google.android.material.textfield.TextInputLayout>

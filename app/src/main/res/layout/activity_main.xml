@@ -41,6 +41,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/roboto_medium"
         app:menu="@menu/menu"
         style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"/>
 

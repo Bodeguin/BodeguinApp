@@ -9,6 +9,7 @@
         android:enabled="true"
         android:icon="@drawable/ic_place"
         android:title="@string/store"
+        android:fontFamily="@font/roboto"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/iSearch"
@@ -16,6 +17,7 @@
         android:enabled="true"
         android:icon="@drawable/ic_search"
         android:title="@string/search"
+        android:fontFamily="@font/roboto"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/iHome"
@@ -23,6 +25,7 @@
         android:enabled="true"
         android:icon="@drawable/ic_store"
         android:title="@string/home"
+        android:fontFamily="@font/roboto"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/iShopping"
@@ -30,6 +33,7 @@
         android:enabled="true"
         android:icon="@drawable/shopping_cart"
         android:title="@string/shopping_cart"
+        android:fontFamily="@font/roboto"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/iProfile"
@@ -37,5 +41,6 @@
         android:enabled="true"
         android:icon="@drawable/account_circle"
         android:title="@string/profile"
+        android:fontFamily="@font/roboto"
         app:showAsAction="ifRoom" />
 </menu>

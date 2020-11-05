@@ -6,5 +6,6 @@
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    android:elevation="8dp">
+    android:elevation="8dp"
+    android:fontFamily="@font/roboto_medium">
 </androidx.appcompat.widget.Toolbar>

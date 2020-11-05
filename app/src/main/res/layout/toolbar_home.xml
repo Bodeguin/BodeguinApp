@@ -8,4 +8,5 @@
     android:background="@color/colorPrimary"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:menu="@menu/logout"
-    android:elevation="8dp"/>
+    android:elevation="8dp"
+    android:fontFamily="@font/roboto_medium"/>
