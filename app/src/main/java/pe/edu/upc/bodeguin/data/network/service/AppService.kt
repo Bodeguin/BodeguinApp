@@ -27,6 +27,6 @@ interface AppService {
     suspend fun getProductsByCategory(@Header("Authorization") token: String, @Path("id") id: Int): Response<ProductResponse>
     @GET("api/products/{id}/stores")
     suspend fun getStoresByProduct(@Header("Authorization") token: String, @Path("id") id: Int): Response<ProductStoreResponse>
-    @POST("api/shops")
+    @POST("api/purchases")
     suspend fun buyShopCart(@Header("Authorization") token: String, @Body voucherRequest: VoucherRequest): Response<ShopCartResponse>
 }

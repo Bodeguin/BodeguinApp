@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object ApiGateway {
-    private const val baseUrl = "http://192.168.1.9:80/"
+    private const val baseUrl = "https://bodeguin.azurewebsites.net/"
     fun instance(
         networkConnectionInterceptor: NetworkConnectionInterceptor
     ): AppService {
