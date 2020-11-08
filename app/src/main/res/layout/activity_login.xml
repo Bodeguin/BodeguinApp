@@ -144,8 +144,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:clickable="true"
-            android:focusable="true"
             android:onClick="showRegister"
             android:text="@string/registry"
             android:textColor="@color/colorPrimary"

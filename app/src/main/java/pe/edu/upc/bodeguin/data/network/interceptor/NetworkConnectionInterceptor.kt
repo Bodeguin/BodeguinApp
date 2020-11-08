@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.util.Log
 import okhttp3.Interceptor
 import okhttp3.Response
 import pe.edu.upc.bodeguin.R
@@ -22,7 +23,11 @@ class NetworkConnectionInterceptor(
             throw NoInternetException(applicationContext.resources.getString(R.string.not_internet))
         try {
             chainResponse = chain.proceed(chain.request())
-            return chainResponse
+            if (chainResponse.code() == 403) {
+                throw NoInternetException(applicationContext.resources.getString(R.string.no_connection_services))
+            } else {
+                return chainResponse
+            }
         } catch (e: Exception){
             throw NoInternetException(applicationContext.resources.getString(R.string.no_connection_services))
         }

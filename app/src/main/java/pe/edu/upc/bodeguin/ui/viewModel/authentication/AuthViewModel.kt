@@ -90,7 +90,7 @@ class AuthViewModel(
                     }
                     registerListener?.fail(getApplication<Application>().resources.getString(R.string.register_error))
                 } catch (e: ApiException) {
-                    registerListener?.fail(getApplication<Application>().resources.getString(R.string.wrong_inputs))
+                    registerListener?.fail(e.message!!)
                 } catch (e: NoInternetException) {
                     registerListener?.fail(e.message!!)
                 }
