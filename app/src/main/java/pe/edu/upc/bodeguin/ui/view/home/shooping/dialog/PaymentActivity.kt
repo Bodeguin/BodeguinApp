@@ -2,23 +2,17 @@ package pe.edu.upc.bodeguin.ui.view.home.shooping.dialog
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_payment.*
-import kotlinx.android.synthetic.main.fragment_home.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.kodein
+import org.kodein.di.generic.instance
 import pe.edu.upc.bodeguin.R
-import pe.edu.upc.bodeguin.data.network.api.ApiGateway
-import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
-import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
 import pe.edu.upc.bodeguin.data.persistance.model.Cart
-import pe.edu.upc.bodeguin.data.repository.CartRepository
 import pe.edu.upc.bodeguin.ui.view.home.MainActivity
 import pe.edu.upc.bodeguin.ui.view.home.shooping.CartListener
-import pe.edu.upc.bodeguin.ui.view.home.shooping.ShoppingFragment
 import pe.edu.upc.bodeguin.ui.viewModel.cart.CartViewModel
 import pe.edu.upc.bodeguin.ui.viewModel.cart.CartViewModelFactory
 import pe.edu.upc.bodeguin.util.Coroutines
@@ -26,25 +20,22 @@ import pe.edu.upc.bodeguin.util.hide
 import pe.edu.upc.bodeguin.util.show
 import pe.edu.upc.bodeguin.util.snackBar
 
-class PaymentActivity : AppCompatActivity(), CartListener {
+class PaymentActivity : AppCompatActivity(), CartListener, KodeinAware {
 
     private lateinit var cartViewModel: CartViewModel
     private var selectIdButton: Int = 1
     private var userId: Int = 0
     private var token: String? = ""
 
+    override val kodein by kodein()
+    private val factory: CartViewModelFactory by instance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
-
-        val networkConnectionInterceptor = NetworkConnectionInterceptor(applicationContext)
-        val api = ApiGateway
-        val db = AppDatabase.getInstance(applicationContext)
-        val repository = CartRepository(networkConnectionInterceptor, api, db)
-        val factory = CartViewModelFactory(application, repository)
         cartViewModel = ViewModelProvider(this, factory).get(CartViewModel::class.java)
 
-        val sharedPreferences = getSharedPreferences("data", 0)
+        val sharedPreferences = getSharedPreferences("localData", 0)
         token = sharedPreferences.getString("token", "")
         userId = sharedPreferences.getString("id", "")!!.toInt()
 

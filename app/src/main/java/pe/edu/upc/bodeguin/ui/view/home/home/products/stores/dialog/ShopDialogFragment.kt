@@ -2,28 +2,25 @@ package pe.edu.upc.bodeguin.ui.view.home.home.products.stores.dialog
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_product_store.*
 import kotlinx.android.synthetic.main.fragment_shop_dialog.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.kodein
+import org.kodein.di.generic.instance
 import pe.edu.upc.bodeguin.R
-import pe.edu.upc.bodeguin.data.network.api.ApiGateway
-import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
-import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
 import pe.edu.upc.bodeguin.data.persistance.model.Cart
-import pe.edu.upc.bodeguin.data.repository.CartRepository
 import pe.edu.upc.bodeguin.ui.viewModel.cart.CartViewModel
 import pe.edu.upc.bodeguin.ui.viewModel.cart.CartViewModelFactory
 import pe.edu.upc.bodeguin.util.snackBar
 
-class ShopDialogFragment : DialogFragment() {
+class ShopDialogFragment : DialogFragment(), KodeinAware {
 
     private var number = 1
     private lateinit var imageView: ImageView
@@ -38,14 +35,11 @@ class ShopDialogFragment : DialogFragment() {
     private var measureUnit: String = ""
     private lateinit var cartViewModel: CartViewModel
 
+    override val kodein by kodein()
+    private val factory: CartViewModelFactory by instance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val networkConnectionInterceptor = NetworkConnectionInterceptor(activity!!.applicationContext)
-        val api = ApiGateway
-        val db = AppDatabase.getInstance(activity!!.applicationContext)
-        val repository = CartRepository(networkConnectionInterceptor, api, db)
-        val factory = CartViewModelFactory(activity!!.application, repository)
         cartViewModel = ViewModelProvider(this, factory).get(CartViewModel::class.java)
     }
 

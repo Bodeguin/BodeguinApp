@@ -1,41 +1,32 @@
 package pe.edu.upc.bodeguin.ui.view.home.profile
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.generic.instance
 import pe.edu.upc.bodeguin.R
 import pe.edu.upc.bodeguin.databinding.FragmentProfileBinding
-import pe.edu.upc.bodeguin.data.network.api.ApiGateway
-import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
-import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
-import pe.edu.upc.bodeguin.data.persistance.model.User
-import pe.edu.upc.bodeguin.data.repository.UserRepository
 import pe.edu.upc.bodeguin.ui.view.home.profile.dialog.AccountFragment
 import pe.edu.upc.bodeguin.ui.view.home.profile.dialog.DirectionFragment
 import pe.edu.upc.bodeguin.ui.view.home.profile.dialog.PersonalDataFragment
 import pe.edu.upc.bodeguin.ui.viewModel.profile.UserViewModel
 import pe.edu.upc.bodeguin.ui.viewModel.profile.UserViewModelFactory
-import pe.edu.upc.bodeguin.util.snackBar
+import org.kodein.di.android.x.kodein
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(), KodeinAware {
 
     private lateinit var userViewModel: UserViewModel
+    override val kodein by kodein()
+    private val factory: UserViewModelFactory by instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val networkConnectionInterceptor = NetworkConnectionInterceptor(activity!!.applicationContext)
-        val api = ApiGateway
-        val db = AppDatabase.getInstance(activity!!.applicationContext)
-        val repository = UserRepository(networkConnectionInterceptor, api, db)
-        val factory = UserViewModelFactory(activity!!.application, repository)
         userViewModel = ViewModelProvider(this, factory).get(UserViewModel::class.java)
     }
 

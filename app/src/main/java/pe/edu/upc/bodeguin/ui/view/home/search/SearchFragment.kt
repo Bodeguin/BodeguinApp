@@ -8,37 +8,31 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_search.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.kodein
+import org.kodein.di.generic.instance
 import pe.edu.upc.bodeguin.R
-import pe.edu.upc.bodeguin.data.network.api.ApiGateway
-import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
 import pe.edu.upc.bodeguin.data.network.model.response.data.ProductData
-import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
-import pe.edu.upc.bodeguin.data.repository.ProductRepository
 import pe.edu.upc.bodeguin.ui.viewModel.product.ProductViewModel
 import pe.edu.upc.bodeguin.ui.viewModel.product.ProductViewModelFactory
 import pe.edu.upc.bodeguin.util.hide
 import pe.edu.upc.bodeguin.util.show
 import pe.edu.upc.bodeguin.util.snackBar
 
-class SearchFragment : Fragment(), ProductListener {
+class SearchFragment : Fragment(), ProductListener, KodeinAware {
 
     private lateinit var productViewModel: ProductViewModel
     private lateinit var productAdapter: ProductAdapter
+    override val kodein by kodein()
+    private val factory: ProductViewModelFactory by instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val networkConnectionInterceptor = NetworkConnectionInterceptor(activity!!.applicationContext)
-        val api = ApiGateway
-        val db = AppDatabase.getInstance(activity!!.applicationContext)
-        val repository = ProductRepository(networkConnectionInterceptor, api, db)
-        val factory = ProductViewModelFactory(activity!!.application, repository)
         productViewModel = ViewModelProvider(this, factory).get(ProductViewModel::class.java)
 
-        val sharedPreferences = activity!!.getSharedPreferences("data", 0)
+        val sharedPreferences = activity!!.getSharedPreferences("localData", 0)
         val token = sharedPreferences.getString("token", "")
 
         productViewModel.setToken(token.toString())

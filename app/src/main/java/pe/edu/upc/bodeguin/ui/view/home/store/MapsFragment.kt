@@ -22,17 +22,16 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_maps.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.kodein
+import org.kodein.di.generic.instance
 import pe.edu.upc.bodeguin.R
-import pe.edu.upc.bodeguin.data.network.api.ApiGateway
-import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
 import pe.edu.upc.bodeguin.data.network.model.response.data.StoreData
-import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
-import pe.edu.upc.bodeguin.data.repository.StoreRepository
 import pe.edu.upc.bodeguin.ui.viewModel.store.StoreViewModel
 import pe.edu.upc.bodeguin.ui.viewModel.store.StoreViewModelFactory
 import pe.edu.upc.bodeguin.util.snackBar
 
-class MapsFragment : Fragment(), OnMapReadyCallback, StoreListener {
+class MapsFragment : Fragment(), OnMapReadyCallback, StoreListener, KodeinAware {
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
@@ -43,16 +42,13 @@ class MapsFragment : Fragment(), OnMapReadyCallback, StoreListener {
     private lateinit var lastLocation: Location
     private lateinit var storeViewModel: StoreViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override val kodein by kodein()
+    private val factory: StoreViewModelFactory by instance()
 
-        val networkConnectionInterceptor = NetworkConnectionInterceptor(activity!!.applicationContext)
-        val api = ApiGateway
-        val db = AppDatabase.getInstance(activity!!.applicationContext)
-        val repository = StoreRepository(networkConnectionInterceptor, api, db)
-        val factory = StoreViewModelFactory(activity!!.application, repository)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         storeViewModel = ViewModelProvider(this, factory).get(StoreViewModel::class.java)
 
-        val sharedPreferences = activity!!.getSharedPreferences("data", 0)
+        val sharedPreferences = activity!!.getSharedPreferences("localData", 0)
         val token = sharedPreferences.getString("token", "")
         storeViewModel.setToken(token.toString())
         storeViewModel.storeListener = this

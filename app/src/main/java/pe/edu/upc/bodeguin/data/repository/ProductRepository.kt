@@ -1,25 +1,20 @@
 package pe.edu.upc.bodeguin.data.repository
 
-import pe.edu.upc.bodeguin.data.network.api.ApiGateway
 import pe.edu.upc.bodeguin.data.network.api.SafeApiRequest
-import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
 import pe.edu.upc.bodeguin.data.network.model.response.ProductResponse
 import pe.edu.upc.bodeguin.data.network.model.response.ProductStoreResponse
-import pe.edu.upc.bodeguin.data.network.model.response.data.ProductStoreData
-import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
+import pe.edu.upc.bodeguin.data.network.service.AppService
 
-class ProductRepository (
-    private val networkConnectionInterceptor: NetworkConnectionInterceptor,
-    private val api: ApiGateway,
-    private val db: AppDatabase
+class ProductRepository(
+    private val api: AppService
 ) : SafeApiRequest() {
     suspend fun getProductApi(token: String, query: String) : ProductResponse {
-        return apiRequest { api.instance(networkConnectionInterceptor).getProducts(token, query) }
+        return apiRequest { api.getProducts(token, query) }
     }
     suspend fun getProductsByCategoryApi(token: String, id: Int) : ProductResponse {
-        return apiRequest { api.instance(networkConnectionInterceptor).getProductsByCategory(token, id) }
+        return apiRequest { api.getProductsByCategory(token, id) }
     }
     suspend fun getStoresByProducts(token: String, id: Int) : ProductStoreResponse {
-        return apiRequest { api.instance(networkConnectionInterceptor).getStoresByProduct(token, id) }
+        return apiRequest { api.getStoresByProduct(token, id) }
     }
 }

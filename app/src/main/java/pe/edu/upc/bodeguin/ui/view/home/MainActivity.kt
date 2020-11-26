@@ -7,25 +7,23 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.AttributeSet
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.kodein
+import org.kodein.di.generic.instance
 import pe.edu.upc.bodeguin.R
-import pe.edu.upc.bodeguin.data.network.api.ApiGateway
-import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
-import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
 import pe.edu.upc.bodeguin.data.persistance.model.User
-import pe.edu.upc.bodeguin.data.repository.CartRepository
-import pe.edu.upc.bodeguin.data.repository.UserRepository
 import pe.edu.upc.bodeguin.ui.view.authentication.LoginActivity
 import pe.edu.upc.bodeguin.ui.view.home.home.HomeFragment
 import pe.edu.upc.bodeguin.ui.view.home.profile.ProfileFragment
@@ -41,7 +39,7 @@ import pe.edu.upc.bodeguin.util.Coroutines
 import pe.edu.upc.bodeguin.util.snackBar
 
 class MainActivity : AppCompatActivity(),
-    UserListener {
+    UserListener, KodeinAware {
 
     private lateinit var toolbar: Toolbar
     private var notificationId = 0
@@ -54,17 +52,13 @@ class MainActivity : AppCompatActivity(),
         const val CHANNEL_ID = "pe.edu.upc.bodega.NOTIFICATION"
     }
 
+    override val kodein by kodein()
+    private val factory: UserViewModelFactory by instance()
+    private val cartFactory: CartViewModelFactory by instance()
+
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val networkConnectionInterceptor = NetworkConnectionInterceptor(this)
-        val api = ApiGateway
-        val db = AppDatabase.getInstance(this)
-        val cartRepository = CartRepository(networkConnectionInterceptor, api, db)
-        val repository = UserRepository(networkConnectionInterceptor, api, db)
-        val cartFactory = CartViewModelFactory(application, cartRepository)
-        val factory = UserViewModelFactory(application, repository)
         cartViewModel = ViewModelProvider(this, cartFactory).get(CartViewModel::class.java)
         userViewModel = ViewModelProvider(this, factory).get(UserViewModel::class.java)
         userViewModel.userListener = this
@@ -116,7 +110,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun logOut() {
-        val editor: SharedPreferences.Editor = getSharedPreferences("data", 0).edit()
+        val editor: SharedPreferences.Editor = getSharedPreferences("localData", 0).edit()
         editor.remove("token")
         editor.apply()
         finish()

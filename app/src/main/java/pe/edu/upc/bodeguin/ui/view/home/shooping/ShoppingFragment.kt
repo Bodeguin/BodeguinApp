@@ -16,35 +16,31 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_shopping.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.kodein
+import org.kodein.di.generic.instance
 import pe.edu.upc.bodeguin.R
-import pe.edu.upc.bodeguin.data.network.api.ApiGateway
-import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
-import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
-import pe.edu.upc.bodeguin.data.repository.CartRepository
 import pe.edu.upc.bodeguin.ui.view.home.shooping.dialog.PaymentActivity
 import pe.edu.upc.bodeguin.ui.viewModel.cart.CartViewModel
 import pe.edu.upc.bodeguin.ui.viewModel.cart.CartViewModelFactory
 import pe.edu.upc.bodeguin.util.ItemTouchHelperCallback
 import pe.edu.upc.bodeguin.util.snackBar
 
-class ShoppingFragment : Fragment() {
+class ShoppingFragment : Fragment(), KodeinAware {
 
     private lateinit var cartViewModel: CartViewModel
     private lateinit var cartAdapter: CartAdapter
     private var swipeBackground: ColorDrawable = ColorDrawable(Color.parseColor("#FF4343"))
     private lateinit var deleteIcon: Drawable
 
+    override val kodein by kodein()
+    private val factory: CartViewModelFactory by instance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val networkConnectionInterceptor = NetworkConnectionInterceptor(activity!!.applicationContext)
-        val api = ApiGateway
-        val db = AppDatabase.getInstance(activity!!.applicationContext)
-        val repository = CartRepository(networkConnectionInterceptor, api, db)
-        val factory = CartViewModelFactory(activity!!.application, repository)
         cartViewModel = ViewModelProvider(this, factory).get(CartViewModel::class.java)
 
-        val sharedPreferences = activity!!.getSharedPreferences("data", 0)
+        val sharedPreferences = activity!!.getSharedPreferences("localData", 0)
         val token = sharedPreferences.getString("token", "")
 
         cartViewModel.setToken(token.toString())
@@ -73,7 +69,7 @@ class ShoppingFragment : Fragment() {
         })
         cartViewModel.totalPriceCart.observe(activity!!, Observer {result ->
             result.let {
-                var resultText = if (it == null){
+                val resultText = if (it == null){
                     resources.getString(R.string.no_price)
                 } else {
                     String.format("%.2f", it)

@@ -9,7 +9,7 @@ import pe.edu.upc.bodeguin.data.persistance.dao.UserDao
 import pe.edu.upc.bodeguin.data.persistance.model.Cart
 import pe.edu.upc.bodeguin.data.persistance.model.User
 
-@Database(entities = [User::class, Cart::class], version = 1, exportSchema = false)
+@Database(entities = [User::class, Cart::class], version = 2, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun cartDao(): CartDao
@@ -18,10 +18,10 @@ abstract class AppDatabase: RoomDatabase() {
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
-        fun getInstance(context: Context): AppDatabase {
+        operator fun invoke(context: Context): AppDatabase {
             if (INSTANCE == null) {
                 INSTANCE = Room
-                    .databaseBuilder(context, AppDatabase::class.java, "BodeguinDatabase")
+                    .databaseBuilder(context, AppDatabase::class.java, "LocalDatabase")
                     .fallbackToDestructiveMigration()
                     .build()
             }

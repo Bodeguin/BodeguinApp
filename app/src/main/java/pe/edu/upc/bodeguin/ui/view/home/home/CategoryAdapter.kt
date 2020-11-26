@@ -39,7 +39,7 @@ class CategoryAdapter(
             val url = categories[position].urlImage
             val intent = Intent(context, ProductsActivity::class.java)
 
-            val editor: SharedPreferences.Editor = context.getSharedPreferences("data", 0).edit()
+            val editor: SharedPreferences.Editor = context.getSharedPreferences("localData", 0).edit()
             editor.putInt("idCategory", id)
             editor.putString("nameCategory", name)
             editor.putString("urlCategory", url)

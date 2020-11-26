@@ -41,7 +41,7 @@ class ProductAdapter(
             val intent = Intent(context, ProductStoreActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK;
 
-            val editor: SharedPreferences.Editor = context.getSharedPreferences("data", 0).edit()
+            val editor: SharedPreferences.Editor = context.getSharedPreferences("localData", 0).edit()
             editor.putInt("idProduct", id)
             editor.putString("nameProduct", name)
             editor.putString("urlProduct", url)

@@ -1,45 +1,39 @@
 package pe.edu.upc.bodeguin.ui.view.home.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.wajahatkarim3.roomexplorer.RoomExplorer
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.kodein
+import org.kodein.di.generic.instance
 import pe.edu.upc.bodeguin.R
-import pe.edu.upc.bodeguin.data.network.api.ApiGateway
-import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
 import pe.edu.upc.bodeguin.data.network.model.response.data.CategoryData
-import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
-import pe.edu.upc.bodeguin.data.repository.CategoryRepository
 import pe.edu.upc.bodeguin.ui.viewModel.category.CategoryViewModel
 import pe.edu.upc.bodeguin.ui.viewModel.category.CategoryViewModelFactory
 import pe.edu.upc.bodeguin.util.hide
 import pe.edu.upc.bodeguin.util.show
 import pe.edu.upc.bodeguin.util.snackBar
 
-class HomeFragment : Fragment(), HomeListener {
+class HomeFragment : Fragment(), HomeListener, KodeinAware {
 
     private lateinit var categoryViewModel: CategoryViewModel
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var token: String
 
+    override val kodein by kodein()
+    private val factory: CategoryViewModelFactory by instance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val networkConnectionInterceptor = NetworkConnectionInterceptor(activity!!.applicationContext)
-        val api = ApiGateway
-        val db = AppDatabase.getInstance(activity!!.applicationContext)
-        val repository = CategoryRepository(networkConnectionInterceptor, api, db)
-        val factory = CategoryViewModelFactory(activity!!.application, repository)
         categoryViewModel = ViewModelProvider(this, factory).get(CategoryViewModel::class.java)
 
-        val sharedPreferences = activity!!.getSharedPreferences("data", 0)
+        val sharedPreferences = activity!!.getSharedPreferences("localData", 0)
         val userToken = sharedPreferences.getString("token", "")
         token = "Bearer $userToken"
 

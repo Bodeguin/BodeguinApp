@@ -1,7 +1,6 @@
 package pe.edu.upc.bodeguin.ui.view.home.profile.dialog
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,33 +8,29 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fragment_direction.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.kodein
+import org.kodein.di.generic.instance
 import pe.edu.upc.bodeguin.R
-import pe.edu.upc.bodeguin.data.network.api.ApiGateway
-import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
-import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
 import pe.edu.upc.bodeguin.data.persistance.model.User
-import pe.edu.upc.bodeguin.data.repository.UserRepository
 import pe.edu.upc.bodeguin.databinding.FragmentDirectionBinding
 import pe.edu.upc.bodeguin.ui.view.home.profile.UserListener
 import pe.edu.upc.bodeguin.ui.viewModel.profile.UserViewModel
 import pe.edu.upc.bodeguin.ui.viewModel.profile.UserViewModelFactory
 import pe.edu.upc.bodeguin.util.snackBar
 
-class DirectionFragment : DialogFragment(), UserListener {
+class DirectionFragment : DialogFragment(), UserListener, KodeinAware {
 
     private lateinit var userViewModel: UserViewModel
+    override val kodein by kodein()
+    private val factory: UserViewModelFactory by instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL, R.style.FullScreeDialogTheme)
 
-        val networkConnectionInterceptor = NetworkConnectionInterceptor(activity!!.applicationContext)
-        val api = ApiGateway
-        val db = AppDatabase.getInstance(activity!!.applicationContext)
-        val repository = UserRepository(networkConnectionInterceptor, api, db)
-        val factory = UserViewModelFactory(activity!!.application, repository)
         userViewModel = ViewModelProvider(this, factory).get(UserViewModel::class.java)
-        val sharedPreferences = activity!!.getSharedPreferences("data", 0)
+        val sharedPreferences = activity!!.getSharedPreferences("localData", 0)
         val id = sharedPreferences.getString("id", "")
         val token = sharedPreferences.getString("token", "")
         userViewModel.cloneUser(id.toString(), token.toString())
