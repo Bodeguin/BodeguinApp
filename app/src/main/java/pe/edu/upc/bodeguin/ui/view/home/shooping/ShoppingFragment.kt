@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,16 +15,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.wajahatkarim3.roomexplorer.RoomExplorer
-import kotlinx.android.synthetic.main.activity_payment.*
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_shopping.*
 import pe.edu.upc.bodeguin.R
 import pe.edu.upc.bodeguin.data.network.api.ApiGateway
 import pe.edu.upc.bodeguin.data.network.interceptor.NetworkConnectionInterceptor
 import pe.edu.upc.bodeguin.data.persistance.database.AppDatabase
 import pe.edu.upc.bodeguin.data.repository.CartRepository
-import pe.edu.upc.bodeguin.ui.view.home.MainActivity
 import pe.edu.upc.bodeguin.ui.view.home.shooping.dialog.PaymentActivity
 import pe.edu.upc.bodeguin.ui.viewModel.cart.CartViewModel
 import pe.edu.upc.bodeguin.ui.viewModel.cart.CartViewModelFactory
@@ -53,7 +48,6 @@ class ShoppingFragment : Fragment() {
         val token = sharedPreferences.getString("token", "")
 
         cartViewModel.setToken(token.toString())
-        //cartViewModel.getCart()
     }
 
     override fun onCreateView(
@@ -65,10 +59,6 @@ class ShoppingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        bTest.setOnClickListener {
-            RoomExplorer.show(context, AppDatabase::class.java, "BodeguinDatabase")
-        }
 
         val totalPrice = view.findViewById<TextView>(R.id.tvTotalPrice)
         totalPrice.text = resources.getString(R.string.no_price)
@@ -83,8 +73,7 @@ class ShoppingFragment : Fragment() {
         })
         cartViewModel.totalPriceCart.observe(activity!!, Observer {result ->
             result.let {
-                var resultText = ""
-                resultText = if (it == null){
+                var resultText = if (it == null){
                     resources.getString(R.string.no_price)
                 } else {
                     String.format("%.2f", it)
