@@ -18,11 +18,10 @@ class NetworkConnectionInterceptor(
     private val applicationContext = context.applicationContext
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        var chainResponse: Response? = null
         if(!isInternetAvailable())
             throw NoInternetException(applicationContext.resources.getString(R.string.not_internet))
         try {
-            chainResponse = chain.proceed(chain.request())
+            val chainResponse = chain.proceed(chain.request())
             if (chainResponse.code() == 403) {
                 throw NoInternetException(applicationContext.resources.getString(R.string.no_connection_services))
             } else {

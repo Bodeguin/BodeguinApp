@@ -28,7 +28,7 @@ class CategoryViewModel(
         homeListener?.onStarted()
         Coroutines.main {
             try {
-                val categories = repository!!.getCategoriesApi(token)
+                val categories = repository.getCategoriesApi(token)
                 if (categories.valid) {
                     categories.let {
                         homeListener?.onSuccess(categories.data)
